@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unlisted Brief</title>
+<meta name="description" content="Notes from a founder, one subway ride at a time — thoughts on real-world assets, tokenization, and what actually makes them work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;300;400;500&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F1E38;
+    --terracotta:#B07A4E;
+    --bronze:#8C6A4F;
+    --terracotta-tint:#F4ECE6;
+    --slate:#4A5568;
+    --cream:#F5F2EE;
+    --line: rgba(15,30,56,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;}
+
+  /* ============ HERO BAND ============ */
+  .hero{
+    position:relative;
+    width:100%;
+    min-height:340px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background-image:url('images/hero-subway.png');
+    background-size:cover;
+    background-position:center;
+  }
+  .hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(15,30,56,0.62);
+  }
+  .hero-content{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    max-width:560px;
+    padding:32px 24px;
+    color:#FFFFFF;
+  }
+  .hero-content .wordmark{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:500;
+    font-size:38px;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin-bottom:14px;
+  }
+  .hero-content .subtitle{
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:rgba(255,255,255,0.85);
+    margin-bottom:20px;
+  }
+  .hero-content .welcome{
+    font-size:14px;
+    line-height:1.6;
+    color:rgba(255,255,255,0.92);
+    max-width:440px;
+    margin:0 auto;
+  }
+
+  /* ============ LAYOUT BELOW HERO ============ */
+  .layout{
+    display:flex;
+    align-items:flex-start;
+    gap:56px;
+    max-width:920px;
+    margin:0 auto;
+    padding:56px 24px 96px;
+  }
+
+  .articles-col{
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .articles-col h2{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:400;
+    font-size:13px;
+    letter-spacing:0.1em;
+    color:var(--slate);
+    text-transform:uppercase;
+    margin:0 0 20px;
+  }
+  .article-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .article-list li{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:20px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .article-list li:first-child{
+    padding-top:0;
+  }
+  .article-list a{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:400;
+    font-size:17px;
+    color:var(--navy);
+    text-decoration:none;
+    letter-spacing:-0.005em;
+    line-height:1.4;
+  }
+  .article-list a:hover{
+    color:var(--bronze);
+  }
+  .article-list .date{
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--slate);
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  .older-posts{
+    margin-top:24px;
+    text-align:center;
+  }
+  .older-posts a{
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--terracotta);
+    text-decoration:none;
+    border:1px solid rgba(176,122,78,0.35);
+    padding:8px 18px;
+    border-radius:20px;
+    display:inline-block;
+  }
+  .older-posts a:hover{
+    background:var(--terracotta-tint);
+  }
+
+  .founder-col{
+    flex:0 0 220px;
+    position:sticky;
+    top:32px;
+  }
+  .founder-photo{
+    width:88px;
+    height:88px;
+    border-radius:50%;
+    border:1px dashed rgba(176,122,78,0.45);
+    background:var(--terracotta-tint);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--terracotta);
+    font-size:9px;
+    letter-spacing:0.06em;
+    text-align:center;
+    margin-bottom:16px;
+  }
+  .founder-name{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:500;
+    font-size:16px;
+    margin-bottom:6px;
+  }
+  .founder-bio{
+    font-size:12px;
+    line-height:1.55;
+    color:var(--slate);
+    margin-bottom:14px;
+  }
+  .founder-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--terracotta);
+    text-decoration:none;
+    border:1px solid rgba(176,122,78,0.35);
+    padding:6px 12px;
+    border-radius:20px;
+  }
+  .founder-link:hover{
+    background:var(--terracotta-tint);
+  }
+
+  /* ============ SITE FOOTER ============ */
+  .site-footer{
+    text-align:center;
+    padding:28px 24px 40px;
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:400;
+    font-size:12px;
+    letter-spacing:0.02em;
+    color:var(--slate);
+    border-top:1px solid var(--line);
+  }
+
+  /* ============ MOBILE ============ */
+  @media (max-width:720px){
+    .hero{ min-height:280px; }
+    .hero-content .wordmark{ font-size:30px; }
+    .layout{
+      flex-direction:column;
+      gap:48px;
+      padding:40px 20px 72px;
+    }
+    .founder-col{
+      position:static;
+      order:2;
+      flex:1 1 auto;
+      width:100%;
+    }
+    .articles-col{ order:1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="wordmark">The Unlisted Brief</div>
+    <div class="subtitle">Notes from a founder, one subway ride at a time.</div>
+    <p class="welcome">Thoughts on real-world assets, tokenization, smart contracts, and what actually makes them work — written between subway stops.</p>
+  </div>
+</div>
+
+<div class="layout">
+
+  <div class="articles-col">
+    <h2>Articles</h2>
+    <ul class="article-list">
+      <li><a href="post-001.html">What is security token issuance for renewable energy assets</a><span class="date">SEP 23, 2026</span></li>
+    </ul>
+    <!-- "Older posts" link — hidden for now since there's only one post.
+         Uncomment and point at page 2 once there's enough content to paginate. -->
+    <!--
+    <div class="older-posts"><a href="page-2.html">Older posts →</a></div>
+    -->
+  </div>
+
+  <div class="founder-col">
+    <div class="founder-photo">[ PHOTO ]</div>
+    <div class="founder-name">[ Name pending ]</div>
+    <div class="founder-bio">Renewable energy by background, tokenization by curiosity, a few other things by accident.</div>
+    <a class="founder-link" href="#">LinkedIn →</a>
+  </div>
+
+</div>
+
+<div class="site-footer">The Unlisted Brief</div>
+
+</body>
+</html>
