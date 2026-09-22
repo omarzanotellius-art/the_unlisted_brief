@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Unlisted Brief</title>
+  <subtitle>Notes from a founder, one subway ride at a time.</subtitle>
+  <link href="https://theunlistedbrief.com/feed.xml" rel="self"/>
+  <link href="https://theunlistedbrief.com/"/>
+  <id>https://theunlistedbrief.com/</id>
+  <updated>2026-09-22T00:00:00Z</updated>
+  <author>
+    <name>Omar Zanotelli</name>
+  </author>
+
+  <entry>
+    <title>What is security token issuance for renewable energy assets</title>
+    <link href="https://theunlistedbrief.com/post-001.html"/>
+    <id>https://theunlistedbrief.com/post-001.html</id>
+    <updated>2026-09-22T00:00:00Z</updated>
+    <summary>Security token issuance for renewable energy assets means representing ownership in the asset as a compliant token — here's what actually gets tokenized and what has to happen first.</summary>
+  </entry>
+
+  <!-- one <entry> block per published post, in the same pattern, newest first -->
+</feed>
