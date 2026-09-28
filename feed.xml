@@ -5,10 +5,18 @@
   <link href="https://theunlistedbrief.com/feed.xml" rel="self"/>
   <link href="https://theunlistedbrief.com/"/>
   <id>https://theunlistedbrief.com/</id>
-  <updated>2026-09-22T00:00:00Z</updated>
+  <updated>2026-09-29T00:00:00Z</updated>
   <author>
     <name>Omar Zanotelli</name>
   </author>
+
+  <entry>
+    <title>Chain of custody in renewable energy tokenization: what gets lost when assets change hands</title>
+    <link href="https://theunlistedbrief.com/post-002.html"/>
+    <id>https://theunlistedbrief.com/post-002.html</id>
+    <updated>2026-09-29T00:00:00Z</updated>
+    <summary>Assets change hands and the reasoning behind their decisions rarely follows — how context erosion breaks the chain of custody in renewable energy tokenization.</summary>
+  </entry>
 
   <entry>
     <title>What is security token issuance for renewable energy assets</title>
