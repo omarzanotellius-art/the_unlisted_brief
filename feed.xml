@@ -5,10 +5,18 @@
   <link href="https://theunlistedbrief.com/feed.xml" rel="self"/>
   <link href="https://theunlistedbrief.com/"/>
   <id>https://theunlistedbrief.com/</id>
-  <updated>2026-09-29T00:00:00Z</updated>
+  <updated>2026-10-06T00:00:00Z</updated>
   <author>
     <name>Omar Zanotelli</name>
   </author>
+
+  <entry>
+    <title>Can a smart contract run an O&amp;M agreement?</title>
+    <link href="https://theunlistedbrief.com/post-003.html"/>
+    <id>https://theunlistedbrief.com/post-003.html</id>
+    <updated>2026-10-06T00:00:00Z</updated>
+    <summary>I built a code-run O&amp;M agreement to see what a smart contract can actually do for an operating asset: where it helps, and where people still decide.</summary>
+  </entry>
 
   <entry>
     <title>Chain of custody in renewable energy tokenization: what gets lost when assets change hands</title>

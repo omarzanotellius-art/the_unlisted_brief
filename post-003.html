@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can a smart contract run an O&amp;M agreement? — The Unlisted Brief</title>
+<meta name="description" content="I built a code-run O&amp;M agreement to see what a smart contract can actually do for an operating asset: where it helps, and where people still decide.">
+<link rel="alternate" type="application/atom+xml" title="The Unlisted Brief" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;300;400;500&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F1E38;
+    --terracotta:#B07A4E;
+    --bronze:#8C6A4F;
+    --terracotta-tint:#F4ECE6;
+    --slate:#4A5568;
+    --cream:#F5F2EE;
+    --line: rgba(15,30,56,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;}
+
+  /* ============ TOP BAR ============ */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    max-width:760px;
+    margin:32px auto 0;
+    padding:0 20px;
+  }
+  .topbar .wordmark-link{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:500;
+    font-size:15px;
+    color:var(--navy);
+    text-decoration:none;
+    letter-spacing:-0.005em;
+  }
+  .topbar .back-link{
+    font-size:12px;
+    letter-spacing:0.02em;
+    color:var(--slate);
+    text-decoration:none;
+  }
+  .topbar .back-link:hover{
+    color:var(--terracotta);
+  }
+
+  /* ============ ARTICLE ============ */
+  .article-wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:48px 20px 80px;
+  }
+
+  .article-meta{
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--slate);
+    margin-bottom:16px;
+  }
+  .article-meta .sep{
+    margin:0 8px;
+    color:var(--line);
+  }
+
+  h1.article-title{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:300;
+    font-size:34px;
+    line-height:1.16;
+    letter-spacing:-0.02em;
+    margin:0 0 44px;
+  }
+
+  .article-subtitle{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:300;
+    font-size:18px;
+    line-height:1.45;
+    color:var(--slate);
+    margin:-28px 0 44px;
+  }
+
+  .article-body h2{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:400;
+    font-size:21px;
+    line-height:1.4;
+    letter-spacing:-0.005em;
+    margin:52px 0 18px;
+  }
+  .article-body h2:first-child{
+    margin-top:0;
+  }
+  .article-body p{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--slate);
+    margin:0 0 20px;
+    text-align:justify;
+    -webkit-hyphens:auto;
+    hyphens:auto;
+  }
+  .article-image{
+    width:38%;
+    aspect-ratio:3/5;
+    border-radius:10px;
+    object-fit:cover;
+    display:block;
+  }
+  .article-image.float-left{
+    float:left;
+    margin:4px 24px 16px 0;
+  }
+  .article-image.float-right{
+    float:right;
+    margin:4px 0 16px 24px;
+  }
+
+  /* ============ FOUNDER LINE ============ */
+  .founder-line{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:64px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+    clear:both;
+  }
+  .founder-avatar{
+    flex:0 0 auto;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+  }
+  .founder-line-text{
+    font-size:12.5px;
+    line-height:1.5;
+    color:var(--slate);
+  }
+  .founder-line-text a{
+    color:var(--terracotta);
+    text-decoration:none;
+    margin-left:8px;
+    white-space:nowrap;
+  }
+  .founder-line-text a:hover{
+    color:var(--bronze);
+  }
+
+  /* ============ SITE FOOTER ============ */
+  .site-footer{
+    text-align:center;
+    padding:28px 24px 40px;
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:400;
+    font-size:12px;
+    letter-spacing:0.02em;
+    color:var(--slate);
+  }
+
+  @media (max-width:600px){
+    h1.article-title{ font-size:27px; }
+    .article-subtitle{ font-size:16px; }
+    .article-body h2{ font-size:18px; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Omar Zanotelli",
+  "url": "https://theunlistedbrief.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/omar-z-9b4b276b/",
+    "https://www.instagram.com/omarzanotelli/"
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="wordmark-link" href="index.html">The Unlisted Brief</a>
+  <a class="back-link" href="index.html">← All articles</a>
+</div>
+
+<div class="article-wrap">
+
+  <div class="article-meta">OCT 6, 2026<span class="sep">·</span>7 MIN READ</div>
+
+  <h1 class="article-title">Can a smart contract run an O&amp;M agreement?</h1>
+
+  <p class="article-subtitle">What I learned building one, and what code still can't decide</p>
+
+  <div class="article-body">
+    <p>Most smart contract conversations focus on tokens and trading. Far fewer explore what happens when code governs a physical asset. To test how this works in practice, I built a code-run O&amp;M agreement where funds are committed in advance and released only when evidence of the completed work enters the record.</p>
+    <p>The technology to do this already exists. Whether it works for a real operating asset is a different question, and building one left me with another worth asking about your own O&amp;M agreement: how much of it actually runs on the contract, and how much on the relationship?</p>
+    <h2>What a smart contract actually does</h2>
+    <p>When people hear the term "smart contract," they often imagine an automated decision-maker replacing human judgment. In reality, that's neither practical nor desirable for most O&amp;M activities.</p>
+    <p>In this example, the smart contract doesn't decide whether an inverter should be replaced, whether a technician's assessment is correct, or whether a maintenance strategy makes sense. Those decisions remain in human hands.</p>
+    <p>Instead, it runs the agreement itself. It can hold funds, make sure each step happens in the agreed order, and keep a shared record of what was submitted, done, and approved. It runs on a blockchain, but there's nothing to speculate on. In practice, the owner deposits funds in advance, in digital dollars (a stablecoin), enough to cover the upcoming work, and both parties use a digital wallet to approve their steps. The README walks through the setup in plain language. The expertise still comes from people. The contract simply provides a more structured and transparent way to coordinate their work.</p>
+    <h2>The real cost: reconstructing what happened</h2>
+    <p>For an asset manager, moving the money is rarely the hard part. The hard part is chasing reports and supporting documentation, and later reconstructing everything that led to the payment.</p>
+    <p>A single maintenance visit leaves a trail: the request, the site visit, photos, the report, the approval, the payment. Each party keeps its own part of it, and no one holds the whole story. And that story has to hold together across the life of an asset, even as owners, operators, lenders, and service providers change.</p>
+    <p>Here, the key steps are recorded as they happen: what was submitted and when, who approved it, and when the payment was released, in one record both sides can see and neither can rewrite. The automation helps, but it isn't the main point. The evidence releases the payment, and the payment makes sure the evidence exists.</p>
+    <p>Why not escrow and ordinary software? Honestly, much of this could run that way: a shared platform with an audit log and a traditional escrow account would cover a lot of it. What a blockchain adds is narrower. Nobody has to trust a platform operator, the record outlives any single vendor, and anyone can check it later without asking permission. Whether that's worth the extra friction depends on how much those three things matter to you.</p>
+    <h2>Rebalancing incentives: who does the code protect?</h2>
+    <p>In a sense, both parties. The provider knows the funds are committed before the work begins. The owner knows payment is released only once the agreed evidence is on record. Both sides know the rules before the first wrench is turned. It isn't perfectly balanced, though. Committed funds and payment on silence favor the provider. In exchange, the owner takes on a clear responsibility: review each submission within the agreed window, or accept it by default.</p>
+    <p>It also changes the incentives. In construction, I've seen how much this matters: contracts tend to get what they pay for. Pay only for good news, and good news is what you'll get. So when my first instinct here was to pay only when the asset passed inspection, I changed it. The provider is paid for the service, and the finding goes on the record, good or bad. A problem found early becomes part of the work, not a threat to the invoice. That doesn't mean paying for paperwork. If a submission doesn't hold up, the owner can reject it, as long as the reason goes on the record too, and the provider gets a chance to put it right.</p>
+    <p>Most disputes I've seen didn't start with bad faith. They started with two reasonable people remembering the same agreement differently. A shared record won't settle who was right about the work, but it narrows the argument to the work itself, not to what was agreed, submitted, approved or paid.</p>
+    <h2>A record built for disagreements</h2>
+    <p>Most contracts are written as if everything will go wrong, while people sign them expecting things to go right. So if a contract exists partly to help the parties through future disagreements, shouldn't it also keep the evidence needed to resolve them?</p>
+    <p>This pilot is one way to do that. Every inspection, repair, rejection, and miss is recorded as it happens, in a record both parties contribute to and neither can rewrite on their own. In a live version, a report that resurfaces five years later can be checked against what was recorded on the day. In my <a href="post-002.html" style="color:var(--terracotta);text-decoration:none;">last post</a>, I wrote about a solar farm where knowledge that already existed had to be rebuilt from scratch after the asset changed hands. This pilot records inspections and repairs, not strategic decisions, but the principle is the same: capture the record when it's made, so it doesn't depend on who's still around.</p>
+    <p>And a record kept for disagreements turns out to be useful long after them. It's the beginning of a shared history of the asset, one a buyer or lender could check for themselves.</p>
+    <h2>What surprised me: code doesn't do vague</h2>
+    <p>What surprised me most was how much it takes to turn ordinary clauses into code that only understands yes or no. Getting close to how the work actually happens takes far more conditions than you'd expect, and the exercise kept asking me the same question: what if?</p>
+    <p>Most agreements leave room for interpretation, often on purpose. That isn't a flaw: flexibility helps people handle what nobody could anticipate when they signed. But code doesn't do vague. Questions a traditional contract could leave open suddenly need concrete answers, and you start to see how much has always been covered by experienced people using their judgment.</p>
+    <p>Creating an O&amp;M agreement framework that runs as code is achievable. But some calls can't be written as code. So what exactly is being automated? A smart contract can confirm that evidence was submitted and hasn't changed since, and release the payment once the agreed conditions are met. People still decide what the evidence means, and what counts as good enough. In my experience, that's where agreement is hardest to find.</p>
+    <p>Say a provider repairs a damaged cable and submits the evidence. Whether the repair meets the standard, whether the root cause was found, whether the problem is actually solved: those are still calls for people.</p>
+    <p>Even oracles (data feeds that bring outside information, like sensor readings, into a smart contract) can't remove that judgment entirely. They can confirm that output is back; they can't tell you why it failed, or whether the fix will last. A careless inspection, recorded perfectly, is still careless.</p>
+    <p>Code has another edge: it doesn't bend. Once both sides accept the terms, they can't be renegotiated halfway through; changing anything means a new agreement. And it does exactly what was agreed: once a payment is released, it stays released, even if a problem surfaces the next day. If the legal agreement behind it were set aside, the code wouldn't know. That predictability is the point, and also the cost.</p>
+    <p>That's a trade-off worth making. Let the code handle the routine, so people can spend their time on the calls that need them.</p>
+    <p>So, back to the question I started with: code can handle more of an O&amp;M agreement than most people realize, but the relationship still carries the rest, and that's where human time and attention matter most.</p>
+    <h2>The pilot &amp; GitHub repository</h2>
+    <p>I built this to learn, and I'm sharing it for the same reason. It's an exploratory project on a test network with test dollars, covering one asset and two parties. Not a product, not a security, not audited.</p>
+    <p>The code is on <a href="https://github.com/omarzanotellius-art/om-pilot-contract" style="color:var(--terracotta);text-decoration:none;" target="_blank" rel="noopener">GitHub</a>, free to read, reuse or criticize, with a plain-language guide for anyone who doesn't read code. If you run assets or O&amp;M contracts, I'd especially like to hear which rules you'd write differently.</p>
+    <p>Next time: what that history could mean for the asset itself.</p>
+  </div>
+
+  <div class="founder-line">
+    <img class="founder-avatar" src="images/founder-avatar.png" alt="Omar Zanotelli">
+    <div class="founder-line-text">
+      Renewable energy by background, tokenization by curiosity, a few other things by accident.
+      <a href="https://www.linkedin.com/in/omar-z-9b4b276b/" target="_blank" rel="noopener">LinkedIn →</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">The Unlisted Brief</div>
+
+</body>
+</html>
