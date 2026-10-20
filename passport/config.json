@@ -1,0 +1,13 @@
+{
+  "chainId": 80002,
+  "networkName": "Polygon Amoy",
+  "rpc": [
+    "https://polygon-amoy-bor-rpc.publicnode.com",
+    "https://rpc-amoy.polygon.technology"
+  ],
+  "explorer": "https://amoy.polygonscan.com",
+  "mrzNetwork": "AMOY<TESTNET",
+  "contract": "0x024f7b7064ff3f824105563c443fb6db5365bdf2",
+  "fromBlock": "50597288",
+  "toBlock": "50601139"
+}
