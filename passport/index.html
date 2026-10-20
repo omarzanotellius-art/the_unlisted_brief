@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Fictional records of farms in a real county: not listed by search engines; links still followed. -->
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asset passport · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  /* page surround */
+  --bg:#F5F2EE; --text:#0F1E38; --muted:#4A5568; --panel:#FFFFFF; --line:rgba(15,30,56,0.18);
+  --link:#7A5A40; --btn:#0F1E38; --btn-text:#FFFFFF; --chip:#FFFFFF; --chip-line:rgba(15,30,56,0.25);
+  --banner-bg:#F4ECE6; --banner-line:#8C6A4F;
+  /* the booklet is a physical object: its paper and ink stay the same in light and dark */
+  --paper:#FBF8F3; --ink:#0F1E38; --ink-muted:#4A5568; --bronze:#7A5A40; --cover:#0F1E38; --gold:#D9BE8C;
+  --serif:'Epilogue',Georgia,'Times New Roman',serif;
+  --sans:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Space Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#14171C; --text:#ECE7DF; --muted:#A8B0BC; --panel:#1C2027; --line:rgba(236,231,223,0.18);
+    --link:#D9BE8C; --btn:#D9BE8C; --btn-text:#14171C; --chip:#1C2027; --chip-line:rgba(236,231,223,0.28);
+    --banner-bg:#2A2420; --banner-line:#8C6A4F;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#14171C; --text:#ECE7DF; --muted:#A8B0BC; --panel:#1C2027; --line:rgba(236,231,223,0.18);
+  --link:#D9BE8C; --btn:#D9BE8C; --btn-text:#14171C; --chip:#1C2027; --chip-line:rgba(236,231,223,0.28);
+  --banner-bg:#2A2420; --banner-line:#8C6A4F;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans)}
+a{color:var(--link)}
+:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+.wrap{max-width:1220px;margin:0 auto;padding:0 24px}
+.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:28px}
+.brand{font-family:var(--serif);font-weight:500;font-size:15px;color:var(--text);text-decoration:none}
+.back{font-size:12px;color:var(--muted);text-decoration:none}
+main{display:flex;flex-direction:column;gap:30px;padding:28px 0 64px}
+.disclosure{border:1px solid var(--line);border-radius:8px;padding:12px 16px;font-size:13px;line-height:1.5;color:var(--muted);background:var(--panel)}
+.archived{border:1px solid var(--banner-line);background:var(--banner-bg);border-radius:8px;padding:12px 16px;font-size:13px}
+.head{display:flex;flex-direction:column;gap:8px}
+.eyebrow{font-size:11px;letter-spacing:.08em;color:var(--muted)}
+h1{margin:0;font-family:var(--serif);font-weight:300;font-size:34px;line-height:1.15;letter-spacing:-.02em}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;font-size:12px;color:var(--muted)}
+.meta .src{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.dot{width:8px;height:8px;border-radius:50%}
+.linkbtn{background:none;border:0;padding:0 2px;min-height:44px;font:inherit;color:var(--link);text-decoration:underline;cursor:pointer}
+.booklet{display:flex;flex-direction:column;align-items:center;gap:20px;padding:6px 0;border-radius:12px}
+.spread{display:grid;grid-template-columns:440px 440px;border-radius:10px;box-shadow:0 18px 30px rgba(15,30,56,.18)}
+.single-wrap{width:440px;border-radius:12px;box-shadow:0 18px 30px rgba(15,30,56,.22)}
+.navrow{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;width:100%;max-width:880px}
+.btn{min-height:44px;min-width:44px;padding:0 18px;border-radius:8px;font-family:var(--sans);font-size:14px;cursor:pointer}
+.btn.prev{border:1px solid var(--chip-line);background:var(--chip);color:var(--text)}
+.btn.next{border:1px solid var(--btn);background:var(--btn);color:var(--btn-text)}
+.btn[disabled]{opacity:.45;cursor:default}
+.status{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:150px;text-align:center}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:900px}
+.tab{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--chip-line);background:var(--chip);color:var(--text);font-family:var(--sans);font-size:13px;cursor:pointer}
+.tab[aria-current="page"]{background:var(--btn);border-color:var(--btn);color:var(--btn-text)}
+.jump{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-size:12px;color:var(--muted)}
+.jump select{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--chip-line);background:var(--chip);color:var(--text);font-family:var(--sans);font-size:13px;cursor:pointer;max-width:100%}
+.row a.wl{color:inherit;text-decoration:none}
+.row a.wl:hover{text-decoration:underline;text-underline-offset:3px}
+.ext{display:inline-block;margin-left:4px;font-family:var(--sans);font-size:.95em;font-weight:500;color:var(--bronze);text-decoration:none}
+.stamp .ext{font-size:.8em;margin-left:3px}
+.years{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center}
+.years .lbl{font-size:11px;letter-spacing:.08em;color:var(--muted);padding-right:4px}
+.year{min-height:44px;min-width:44px;padding:0 10px;border-radius:8px;border:1px solid var(--chip-line);background:var(--chip);color:var(--text);font-family:var(--mono);font-size:12px;cursor:pointer}
+.year[aria-current="page"]{background:var(--btn);border-color:var(--btn);color:var(--btn-text)}
+.cta{border-top:1px solid var(--line);padding-top:30px;display:flex;flex-direction:column;gap:10px}
+.cta a.primary{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:10px 22px;border-radius:8px;background:var(--btn);color:var(--btn-text);text-decoration:none;font-size:15px;line-height:1.4}
+.small{margin:0;font-size:12px;color:var(--muted)}
+.closing{border-top:1px solid var(--line);padding-top:22px;display:flex;flex-direction:column;gap:8px;font-size:12px;line-height:1.6;color:var(--muted);max-width:760px}
+.closing p{margin:0}
+footer{text-align:center;padding:24px 24px 40px;font-family:var(--serif);font-size:12px;color:var(--muted)}
+
+/* ---------- passport pages (fixed paper colours) ---------- */
+.pg{width:440px;max-width:100%;min-width:0;aspect-ratio:440/620;display:flex;flex-direction:column;font-family:var(--sans);color:var(--ink)}
+.pg>*{flex:1 1 auto;min-width:0}
+.cover{background:var(--cover);border-radius:6px 16px 16px 6px;box-shadow:inset 12px 0 0 rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:56px 28px 44px;color:var(--gold);text-align:center}
+.cover .cty{font-family:var(--serif);font-size:12px;letter-spacing:.22em}
+.cover .ttl{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:.2em}
+.cover .nm{font-size:14px;letter-spacing:.08em;margin-top:12px}
+.backc{background:var(--cover);border-radius:16px 6px 6px 16px;box-shadow:inset -12px 0 0 rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;padding:44px 28px;color:var(--gold);text-align:center}
+.backc .a{font-family:var(--serif);font-size:11px;letter-spacing:.22em}
+.backc .b{font-family:var(--mono);font-size:12px;letter-spacing:.1em}
+.paper{background-color:var(--paper);border:1px solid rgba(15,30,56,.16);padding:22px 22px 20px;display:flex;flex-direction:column;gap:16px}
+.paper.guil{background-image:repeating-linear-gradient(135deg,rgba(15,30,56,.025) 0 2px,transparent 2px 9px);padding:24px 24px 20px;gap:16px}
+.paper.lined{background-image:repeating-linear-gradient(0deg,transparent 0 27px,rgba(15,30,56,.045) 27px 28px)}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.ph .t{font-family:var(--serif);font-size:13px;letter-spacing:.18em}
+.ph .n{font-size:10px;letter-spacing:.1em;color:var(--ink-muted);white-space:nowrap}
+.lab{font-size:9px;letter-spacing:.12em;color:var(--ink-muted)}
+.val{font-size:13px;line-height:1.35}
+.gt{font-size:9px;letter-spacing:.14em;color:var(--ink-muted);padding-bottom:4px}
+.row{display:flex;flex-direction:column;gap:2px;padding:7px 0;border-bottom:1px dotted rgba(15,30,56,.25)}
+.row .top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:2px 12px;font-size:13px}
+.row .top .v{font-size:12px;color:var(--ink-muted)}
+.row .s{font-size:11px;line-height:1.35;color:var(--ink-muted)}
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.summary div{background:rgba(15,30,56,.05);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.summary b{font-size:13px;font-weight:600;overflow-wrap:anywhere}
+.stamps{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;padding:6px 0}
+.stampcell{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:100%}
+.stamp{text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;max-width:100%;aspect-ratio:1/1;padding:12px;border-radius:50%;background:rgba(255,255,255,.35)}
+.stamp .l{font-size:9px;letter-spacing:.14em;font-weight:600}
+.stamp .d{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.04em}
+.stamp .x{font-size:11px;line-height:1.3}
+.stamp .b{font-size:8.5px;letter-spacing:.04em;line-height:1.25}
+.note{font-size:11px;line-height:1.35;font-style:italic;color:var(--bronze)}
+.notice{font-size:12px;color:var(--ink-muted);text-align:center}
+.logrow{display:grid;grid-template-columns:78px minmax(0,1fr);gap:4px 12px;padding:10px 0;border-bottom:1px dotted rgba(15,30,56,.25);text-decoration:none;color:var(--ink)}
+.logrow .dt{font-family:var(--mono);font-size:12px;font-weight:700}
+.logrow .rc{font-size:10px;line-height:1.3}
+.logrow .body{display:flex;flex-direction:column;gap:3px;min-width:0}
+.logrow .ty{font-size:9px;letter-spacing:.14em;font-weight:600}
+.logrow .tx{font-size:13px;line-height:1.35}
+.logrow .eq{font-family:var(--mono);font-size:10px;letter-spacing:.06em}
+.logrow .by,.logrow .bf{font-size:11px;color:var(--ink-muted);line-height:1.35}
+.empty{flex:1 1 auto;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-muted);text-align:center}
+.mrz{margin-top:auto;min-width:0;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink);background:rgba(255,255,255,.7);border-radius:4px;padding:8px 10px;line-height:1.6;overflow:hidden;white-space:nowrap}
+.dp-top{display:flex;gap:16px;flex-wrap:wrap;min-width:0}
+.photo{width:92px;height:112px;flex:0 0 auto;border-radius:6px;background:#EDE7E0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-muted);font-size:11px}
+.g2{flex:1 1 200px;min-width:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;align-content:start}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 12px}
+.span2{grid-column:span 2}.span3{grid-column:span 3}
+.checks{display:flex;gap:16px;font-size:13px;padding-top:3px}
+.checks span{display:inline-flex;align-items:center;gap:6px}
+.box{width:15px;height:15px;border:1.5px solid var(--ink);border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1;font-weight:700}
+.hold{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+.hold a{display:inline-flex;align-items:center;min-height:44px;color:var(--bronze)}
+.hold .w{font-family:var(--mono);font-size:12px}
+.keyrow{display:flex;align-items:center;gap:14px}
+.keyrow .sw{width:44px;flex:0 0 auto;display:flex;justify-content:center}
+.keyrow .kt{font-size:13px;line-height:1.45;color:var(--ink-muted)}
+
+@media (max-width: 960px){
+  .spread{grid-template-columns:1fr;box-shadow:none}
+  .single-wrap{width:100%;max-width:440px}
+  h1{font-size:28px}
+}
+@media (prefers-reduced-motion: no-preference){
+  .pagefade{animation:fade .18s ease-out}
+  @keyframes fade{from{opacity:.4}to{opacity:1}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><a class="brand" href="#top">The Unlisted Brief</a><a class="back" href="#articles">← All articles</a></div>
+  <main id="app" aria-live="off"></main>
+</div>
+<footer>The Unlisted Brief</footer>
+
+<script>
+// ---- Minimal stand-in for the design canvas runtime, so the template's own logic runs unchanged ----
+class DCLogic {
+  constructor(props) { this.props = props || {}; this.state = null; this.onChange = null; }
+  setState(patch) { this.state = Object.assign({}, this.state || {}, patch); if (this.onChange) this.onChange(); }
+}
+class Component extends DCLogic {
+
+  // ---- Data: read from the chain by loader.mjs (Stage 3B), or the archived snapshot (D32). ----
+  assets() { return window.__PASSPORT_DATA; }
+  txHref(tx) { return tx ? window.__PASSPORT_EXPLORER + '/tx/' + tx : '#'; }
+  addrHref(addr) { return addr ? window.__PASSPORT_EXPLORER + '/address/' + addr : '#'; }
+  walletHref(w) { return this.addrHref(w.address); }
+
+  // ---- Entry kinds. Only scheduled visits and commissioning are stamps; everything else is a log row. ----
+  kinds() {
+    return {
+      commission: { label: 'COMMISSIONED', ink: '#0F1E38', stamp: true, w: '150px', border: '6px double #0F1E38' },
+      sched:      { label: 'SCHEDULED VISIT', ink: '#3B4A6B', stamp: true, w: '132px', border: '2px solid #3B4A6B' },
+      intervention: { label: 'REVAMPING / REPOWERING', ink: '#0F1E38' },
+      unsched:    { label: 'UNSCHEDULED WORK', ink: '#7A5A40' },
+      replace:    { label: 'EQUIPMENT REPLACED', ink: '#0F1E38' },
+      claim:      { label: 'WARRANTY CLAIM', ink: '#5B3A29' },
+      dispute:    { label: 'WARRANTY DISPUTE', ink: '#5B3A29' },
+      weather:    { label: 'SEVERE WEATHER', ink: '#3B4A6B' },
+      insclaim:   { label: 'INSURANCE CLAIM', ink: '#5B3A29' },
+      pending:    { label: 'AWAITING CONFIRMATION', ink: '#4A5568' },
+      provider:   { label: 'O&M PROVIDER CHANGED', ink: '#4A5568' },
+      contract:   { label: 'CONTRACT CHANGE', ink: '#3B4A6B' },
+      transfer:   { label: 'CONTROL TRANSFERRED', ink: '#0F1E38' }
+    };
+  }
+
+  keyItems() {
+    return [
+      { isBox: true, isNote: false, isLink: false, w: '30px', h: '30px', border: '5px double #0F1E38', radius: '50%', text: 'Double-ring seal: commissioning, original or after a major intervention' },
+      { isBox: true, isNote: false, isLink: false, w: '26px', h: '26px', border: '2px solid #3B4A6B', radius: '50%', text: 'Round stamp: scheduled visit' },
+      { isBox: false, isNote: true, isLink: false, text: 'Recorded date in bronze: recorded two or more months after the event' },
+      { isBox: false, isNote: false, isLink: true, text: 'Items marked ↗ (every stamp, entry and wallet) open their record on the explorer' },
+      { isBox: false, isNote: false, isLink: false, text: 'Maintenance pages list entries by the year they were recorded; the event date is shown on each entry.' },
+      { isBox: false, isNote: false, isLink: false, text: 'Recorded on the network: everything except a few details, which are illustrative in this demo: on the data page, COD, developer, grid connection, DC capacity and ratio, energization, typology and orientation; and the modules’ performance warranty.' },
+      { isBox: false, isNote: false, isLink: false, text: 'Holder: the wallet that controls this record. It is not an ownership interest in the asset.' }
+    ];
+  }
+
+  // ---- Dates ----
+  mon(s) {
+    var M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var p = s.split('-');
+    return M[parseInt(p[1], 10) - 1] + ' ' + p[0];
+  }
+  monthsBetween(a, b) {
+    var x = a.split('-'), y = b.split('-');
+    return (parseInt(y[0], 10) * 12 + parseInt(y[1], 10)) - (parseInt(x[0], 10) * 12 + parseInt(x[1], 10));
+  }
+  yearOf(s) { return parseInt(s.slice(0, 4), 10); }
+
+  notesFor(e) {
+    var notes = [];
+    if (e.note) notes.push({ text: e.note });
+    // Late recording is shown by the bronze "Recorded …" date in the row, not by a separate note.
+    return notes;
+  }
+  byLine(e) { return e.by + (e.status ? ' · ' + e.status : ''); }
+  ariaFor(e, label) {
+    var name = label.charAt(0) + label.slice(1).toLowerCase();
+    return name + '. Event ' + this.mon(e.event) + ', recorded ' + this.mon(e.recorded) + '. ' + e.text + '. ' +
+      (e.equip ? 'Equipment: ' + e.equip + '. ' : '') + this.byLine(e) + '. View the transaction on the explorer.';
+  }
+  stampView(e, i) {
+    var K = this.kinds()[e.kind];
+    var rots = ['-3deg', '2deg', '-1.5deg', '2.5deg'];
+    return { label: K.label, w: K.w, h: K.w, border: K.border, ink: K.ink, rot: rots[i % rots.length],
+      date: this.mon(e.event).toUpperCase(), text: e.text, by: this.byLine(e), notes: this.notesFor(e),
+      href: this.txHref(e.tx), aria: this.ariaFor(e, K.label) };
+  }
+  // Corrective work is shown by system only (e.g. "Corrective – Cabling"), not by detailed location.
+  sysOf(eq, sys) {
+    if (sys) return sys.toUpperCase();
+    var map = { 'CABLE SECTION C': 'Cabling', 'INVERTER 2': 'Inverters', 'TRACKERS': 'Trackers' };
+    return (map[eq] || eq || 'General').toUpperCase();
+  }
+  rowView(e) {
+    var K = this.kinds()[e.kind];
+    var late = this.monthsBetween(e.event, e.recorded) > 1;
+    return { href: this.txHref(e.tx), date: this.mon(e.event).toUpperCase(), rec: 'Recorded ' + this.mon(e.recorded),
+      recInk: late ? '#7A5A40' : '#4A5568', type: e.kind === 'unsched' ? 'CORRECTIVE – ' + this.sysOf(e.equip, e.system) : (e.kind === 'replace' ? 'REPLACEMENT – ' + this.sysOf(e.equip, e.system) : ((e.kind === 'claim' || e.kind === 'dispute') && e.equip ? K.label + ' – ' + this.sysOf(e.equip, e.system) : (e.category ? e.category + ' · ' + K.label : K.label))), ink: K.ink, text: e.kind === 'unsched' ? '' : e.text,
+      hasText: e.kind !== 'unsched' && !!e.text, equip: e.equip, hasEquip: ['unsched', 'replace', 'pending', 'claim', 'dispute'].indexOf(e.kind) === -1 && !!e.equip, before1: e.before ? 'Before: ' + e.before[0] : '', before2: e.before ? e.before[1] : '', hasBefore: !!e.before, by: this.byLine(e), notes: this.notesFor(e), aria: this.ariaFor(e, K.label) + (e.before ? ' Before: ' + e.before.join(', ') + '.' : '') };
+  }
+
+  // Summary totals for a component page: unit count, total rating, manufacturers.
+  summaryFor(c) {
+    var n = 0, numeric = true, makers = [];
+    c.units.forEach(function (un) {
+      if (makers.indexOf(un.manufacturer) === -1) makers.push(un.manufacturer);
+      if (un.part) return; // sub-assemblies (e.g. tracker drives) are not counted as separate units
+      if (typeof un.qty === 'number') n += un.qty; else numeric = false;
+    });
+    return [
+      { label: 'UNITS', value: numeric ? n.toLocaleString('en-US') : '[count]' },
+      { label: 'TOTAL', value: c.total }
+    ];
+  }
+
+  // ---- Pagination ----
+  buildPages(a) {
+    var self = this;
+    var LINED = 'repeating-linear-gradient(0deg, transparent 0 27px, rgba(15,30,56,0.045) 27px 28px)';
+    var byEvent = function (x, y) { return x.event < y.event ? -1 : (x.event > y.event ? 1 : (x.recorded < y.recorded ? -1 : 1)); };
+    var byRecorded = function (x, y) { return x.recorded !== y.recorded ? (x.recorded < y.recorded ? -1 : 1) : byEvent(x, y); };
+    var ents = a.entries.slice().sort(byEvent);
+    var of = function (kinds) { return ents.filter(function (en) { return kinds.indexOf(en.kind) !== -1; }); };
+
+    var inner = [];
+    // One sheet, split onto continuation pages when the log is long.
+    function sheet(section, tab, o) {
+      var groups = o.groups || [], stamps = o.stamps || [], log = o.log || [];
+      var groupRows = 0; groups.forEach(function (g) { groupRows += g.rows.length + 1; });
+      var cap = Math.max(2, (stamps.length ? 3 : 6) - Math.ceil(groupRows / 3));
+      var chunks = [];
+      for (var i = 0; i < log.length; i += cap) chunks.push(log.slice(i, i + cap));
+      if (!chunks.length) chunks.push([]);
+      chunks.forEach(function (c, ci) {
+        var first = ci === 0;
+        var p = { kind: 'sheet', section: section, tab: first ? tab : null, yearTab: first ? (o.yearTab || null) : null,
+          title: o.title + (first ? '' : ' · CONTINUED'), bgImage: o.lined ? LINED : 'none',
+          summary: first ? (o.summary || []) : [], groups: first ? groups : [], stamps: first ? stamps : [], log: c, logTitle: o.logTitle || '',
+          notice: first ? (o.notice || '') : '', emptyText: o.emptyText || '' };
+        p.hasSummary = p.summary.length > 0;
+        p.hasStamps = p.stamps.length > 0;
+        p.hasLog = p.log.length > 0;
+        p.hasNotice = !!p.notice;
+        p.isEmpty = !p.groups.length && !p.hasStamps && !p.hasLog && !p.hasNotice;
+        inner.push(p);
+      });
+    }
+
+    inner.push({ kind: 'data', section: 'data', tab: 'Data', name: a.name, assetNo: a.assetNo, type: a.type, capacity: a.capacity,
+      spv: a.spv, addr1: a.legalAddress[0], addr2: a.legalAddress[1],
+      dev1: a.developer.split(' ').slice(0, -1).join(' ') || a.developer, dev2: a.developer.indexOf(' ') !== -1 ? a.developer.split(' ').slice(-1)[0] : '',
+      mt1: a.mounting[0], mt2: a.mounting[1], or1: a.orientation[0], or2: a.orientation[1], dc: a.dc, gridKv: a.gridKv,
+      ratio: a.dcMw ? (a.dcMw / a.acMw).toFixed(2) : '[ratio]', energization: a.energization, cod: a.cod,
+      solarMark: a.tech.solar ? '✓' : '', batteryMark: a.tech.battery ? '✓' : '',
+      techLabel: 'Technology: solar ' + (a.tech.solar ? 'yes' : 'no') + ', battery ' + (a.tech.battery ? 'yes' : 'no'),
+      yield: a.yield, commissioned: a.commissioned, epc: a.epc, place: a.place, holder: a.holder, holderHref: this.addrHref(a.holderAddress), mrz1: a.mrz1, mrz2: a.mrz2,
+      hasTransfer: of(['transfer']).length > 0, noTransfer: of(['transfer']).length === 0, transferHref: this.txHref((of(['transfer']).slice(-1)[0] || {}).tx),
+      lastTransfer: of(['transfer']).length ? this.mon(of(['transfer']).slice(-1)[0].event) : '' });
+
+    // Wallets: which wallets have controlled the record, and which can add entries. No token (D47).
+    var trs = of(['transfer']);
+    sheet('wallets', 'Wallets', { title: 'WALLETS',
+      groups: [
+        { title: 'WALLETS THAT HAVE CONTROLLED THIS RECORD', rows: a.wallets.holders.map(function (h) { return { name: h.w, value: h.period, href: self.walletHref(h) }; }) },
+        { title: 'WALLETS THAT CAN ADD ENTRIES', rows: a.wallets.writers.map(function (w) { return { name: w.w, value: w.period, sub: w.role, hasSub: true, href: self.walletHref(w) }; }) }
+      ],
+      logTitle: 'TRANSFERS OF CONTROL', log: trs.map(function (en) { return self.rowView(en); }),
+      notice: trs.length ? '' : 'No transfer recorded' });
+
+    var MON3 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var codMM = ('0' + (MON3.indexOf(a.commissioned.slice(0, 3)) + 1)).slice(-2) + '/' + a.commissioned.slice(-4);
+    a.components.forEach(function (c, ci) {
+      var hist = ents.filter(function (en) { return en.comp === c.name; });
+      sheet('equipment', ci === 0 ? 'Equipment' : null, { title: c.name.toUpperCase(),
+        summary: c.units.length ? self.summaryFor(c) : [],
+        groups: !c.units.length ? [] : [{ title: 'UNITS', rows: c.units.map(function (un) { return { name: un.name, value: un.rating, hasSub: true,
+          sub: 'Manufacturer ' + un.manufacturer + ' · Model ' + un.model + (un.qty === 1 ? '' : ' · Qty ' + (typeof un.qty === 'number' ? un.qty.toLocaleString('en-US') : un.qty)),
+          hasSub2: true, sub2: 'In service since ' + (un.installed || codMM) }; }) }],
+        logTitle: 'REPLACEMENT HISTORY',
+        log: hist.map(function (en) { return self.rowView(en); }),
+        notice: !c.units.length ? (c.noneText || 'None installed') : (hist.length ? '' : 'No replacements recorded') });
+    });
+
+    var ivs = of(['intervention']);
+    sheet('interventions', 'Interventions', { title: 'MAJOR INTERVENTIONS', lined: true,
+      stamps: of(['commission']).map(function (en, i) { return self.stampView(en, i); }),
+      logTitle: 'REVAMPING AND REPOWERING', log: ivs.map(function (en) { return self.rowView(en); }),
+      notice: ivs.length ? '' : 'No revamping or repowering recorded' });
+
+    // Production history: one row per year. Values come from a.production[year] (MWh); placeholders until supplied.
+    var prod = a.production || {}, py0 = this.yearOf(a.commissioned.slice(-4) + '-01');
+    var lifetime = 0, allKnown = true;
+    var prodRows = [];
+    for (var pyr = py0; pyr <= a.asOfYear; pyr++) {
+      var act = typeof prod[pyr] === 'number' ? prod[pyr] : null;
+      var partial = pyr === py0 ? 'from ' + a.commissioned.slice(0, 3) : (pyr === a.asOfYear ? 'year to date' : '');
+      if (act !== null) lifetime += act; else allKnown = false;
+      prodRows.push({ name: String(pyr) + (partial ? ' (' + partial + ')' : ''),
+        value: act !== null ? act.toLocaleString('en-US') + ' MWh' : '[MWh]', hasSub: false, sub: '' });
+    }
+    sheet('production', 'Production', { title: 'PRODUCTION HISTORY', lined: false,
+      summary: [
+        { label: 'LIFETIME', value: allKnown ? lifetime.toLocaleString('en-US') + ' MWh' : '[MWh]' }
+      ],
+      groups: [{ title: 'ANNUAL PRODUCTION', rows: prodRows }] });
+
+    // Maintenance: one page per year, placed by the year the entry was RECORDED.
+    var maint = of(['sched', 'unsched', 'replace']).sort(byRecorded);
+    var y0 = this.yearOf(a.commissioned.slice(-4) + '-01');
+    for (var y = y0; y <= a.asOfYear; y++) {
+      var yr = maint.filter(function (en) { return self.yearOf(en.recorded) === y; });
+      var visits = yr.filter(function (en) { return en.kind === 'sched'; });
+      var work = yr.filter(function (en) { return en.kind !== 'sched'; });
+      sheet('maintenance', y === y0 ? 'Maintenance' : null, { title: 'MAINTENANCE · ' + y, yearTab: String(y), lined: true,
+        stamps: visits.map(function (en, i) { return self.stampView(en, i); }),
+        notice: visits.length ? '' : 'No scheduled visit recorded',
+        logTitle: 'WORK RECORDED', log: work.map(function (en) { return self.rowView(en); }) });
+    }
+
+    // Active warranties: read from the same unit data as the Equipment pages; cover that ended before this year drops off.
+    var wGroups = [];
+    a.components.forEach(function (c) {
+      var rows = c.units.filter(function (un) {
+        var m = /^(\d{2})\/(\d{4})$/.exec(un.warrantyTo);
+        // Active = cover ends in or after the current month (as of asOfYear/asOfMonth).
+        return !m || (parseInt(m[2], 10) * 12 + parseInt(m[1], 10)) >= (a.asOfYear * 12 + (a.asOfMonth || 12));
+      }).map(function (un) {
+        // Line 1: unit name. Line 2: coverage period, from COD (or install date) to end of cover.
+        var M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var cod = ('0' + (M.indexOf(a.commissioned.slice(0, 3)) + 1)).slice(-2) + '/' + a.commissioned.slice(-4);
+        var from = un.installed || cod;
+        var period = un.performanceTo
+          ? 'Product ' + from + ' – ' + un.warrantyTo + ' · Performance ' + from + ' – ' + un.performanceTo
+          : from + ' – ' + un.warrantyTo + (un.extendedFrom ? ' (extended from ' + un.extendedFrom + ')' : '');
+        return { name: un.name, value: '', hasSub: true, sub: period };
+      });
+      if (rows.length) wGroups.push({ title: c.name.toUpperCase(), rows: rows });
+    });
+    sheet('warranty', 'Warranty', { title: 'ACTIVE WARRANTIES', groups: wGroups, emptyText: 'No active warranties recorded' });
+    sheet('claims', 'Claims', { title: 'WARRANTY CLAIMS AND DISPUTES', logTitle: 'ENTRIES',
+      log: of(['claim', 'dispute']).map(function (en) { return self.rowView(en); }), emptyText: 'No warranty claims recorded' });
+    // Insurance: current policies (placeholders unless the asset supplies a.insurance), then insurance claims.
+    var policies = a.insurance || [
+      { type: 'Property damage (all risk)' },
+      { type: 'Business interruption' },
+      { type: 'General liability' }
+    ];
+    var insClaims = of(['insclaim']);
+    sheet('insurance', 'Insurance', { title: 'INSURANCE',
+      groups: [{ title: 'POLICIES IN FORCE', rows: policies.map(function (pl) {
+        return { name: pl.type, value: pl.period || '[MM/YYYY – MM/YYYY]', hasSub: true,
+          sub: 'Insurer ' + (pl.insurer || '[Insurer]') };
+      }) }],
+      logTitle: 'INSURANCE CLAIMS', log: insClaims.map(function (en) { return self.rowView(en); }),
+      notice: insClaims.length ? '' : 'No insurance claims recorded' });
+    sheet('weather', 'Weather', { title: 'SEVERE WEATHER EVENTS', logTitle: 'EVENTS',
+      log: of(['weather']).map(function (en) { return self.rowView(en); }), emptyText: 'No severe weather events recorded' });
+    sheet('om', 'O&M', { title: 'O&M VENDORS', groups: [{ title: 'VENDORS', rows: a.vendors }] });
+    sheet('am', 'Asset manager', { title: 'ASSET MANAGERS', groups: [{ title: 'ASSET MANAGERS', rows: a.assetManagers || [] }],
+      emptyText: 'No asset manager recorded' });
+    sheet('pending', 'Pending', { title: 'AWAITING CONFIRMATION', logTitle: 'ENTRIES',
+      log: of(['pending']).map(function (en) { return self.rowView(en); }), emptyText: 'No entries awaiting confirmation' });
+
+    if ((inner.length + 1) % 2 === 1) inner.push({ kind: 'sheet', section: 'notes', tab: null, title: 'NOTES', bgImage: LINED,
+      groups: [], stamps: [], log: [], hasStamps: false, hasLog: false, hasNotice: false, isEmpty: false, emptyText: '' });
+    inner.push({ kind: 'key', section: 'key', tab: 'Key', items: this.keyItems() });
+    inner.forEach(function (p, i) { p.num = i + 1; p.numLabel = p.kind === 'key' ? 'INSIDE BACK COVER' : 'PAGE ' + (i + 1); p.mrz1 = a.mrz1; p.mrz2 = a.mrz2; });
+
+    var pages = [{ kind: 'cover', section: 'cover', tab: 'Cover', county: (a.county + ' · ' + a.state).toUpperCase(), name: a.name }]
+      .concat(inner)
+      .concat([{ kind: 'back', section: 'back', tab: null, assetNo: a.assetNo }]);
+    var yOwner = -1;
+    pages.forEach(function (p, i) { if (p.yearTab) yOwner = i; p.yearOwner = p.section === 'maintenance' ? yOwner : -1; });
+    return { pages: pages, interior: inner.length };
+  }
+
+  buildSpreads(n) {
+    var s = [[0]];
+    for (var i = 1; i < n - 1; i += 2) s.push([i, i + 1]);
+    s.push([n - 1]);
+    return s;
+  }
+
+  renderVals() {
+    var self = this;
+    var all = this.assets();
+    var key = (this.props.asset && all[this.props.asset]) ? this.props.asset : 'AP-0002';
+    var a = all[key];
+    var archived = this.props.archived ?? false;
+    var review = this.props.review ?? false;
+
+    var built = this.buildPages(a);
+    var pages = built.pages, N = pages.length, total = built.interior;
+    var spreads = this.buildSpreads(N);
+    var st = this.state || {};
+    var idx = Math.min(Math.max(st.idx || 0, 0), N - 1);
+    var go = function (i) { self.setState({ idx: i }); };
+    var si = 0;
+    spreads.forEach(function (sp, k) { if (sp.indexOf(idx) !== -1) si = k; });
+    var curSp = spreads[si];
+
+    function side(p, where) {
+      var o = Object.assign({}, p);
+      o.width = where === 'single' ? '100%' : '440px';
+      o.radius = where === 'left' ? '10px 3px 3px 10px' : (where === 'right' ? '3px 10px 10px 3px' : '10px');
+      o.shadow = where === 'left' ? 'inset -18px 0 18px -18px rgba(15,30,56,0.28)' : (where === 'right' ? 'inset 18px 0 18px -18px rgba(15,30,56,0.28)' : 'none');
+      return o;
+    }
+    function label(i) {
+      var p = pages[i];
+      if (p.kind === 'cover') return 'Cover';
+      if (p.kind === 'back') return 'Back cover';
+      return 'Page ' + p.num + ' of ' + total;
+    }
+    function spreadView(sp) {
+      if (sp.length === 1) return { isSingle: true, isDouble: false, page: side(pages[sp[0]], 'spread'), status: label(sp[0]) };
+      return { isSingle: false, isDouble: true, left: side(pages[sp[0]], 'left'), right: side(pages[sp[1]], 'right'),
+        status: 'Pages ' + pages[sp[0]].num + '–' + pages[sp[1]].num + ' of ' + total };
+    }
+    function chip(text, i, on) {
+      return { label: text, go: function () { go(i); }, current: on ? 'page' : 'false',
+        bg: on ? '#0F1E38' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0F1E38', border: on ? '#0F1E38' : 'rgba(15,30,56,0.25)' };
+    }
+    function sectionTabs(visible) {
+      var secs = visible.map(function (i) { return pages[i].section; });
+      var out = [];
+      pages.forEach(function (p, i) { if (p.tab) out.push(chip(p.tab, i, secs.indexOf(p.section) !== -1)); });
+      return out;
+    }
+    function yearTabs(visible) {
+      var owners = visible.map(function (i) { return pages[i].yearOwner; });
+      var out = [];
+      pages.forEach(function (p, i) { if (p.yearTab) out.push(chip(p.yearTab, i, owners.indexOf(i) !== -1)); });
+      return out;
+    }
+    function inMaint(visible) { return visible.some(function (i) { return pages[i].section === 'maintenance'; }); }
+
+    var spPrev = function () { if (si > 0) go(spreads[si - 1][0]); };
+    var spNext = function () { if (si < spreads.length - 1) go(spreads[si + 1][0]); };
+    var sgPrev = function () { if (idx > 0) go(idx - 1); };
+    var sgNext = function () { if (idx < N - 1) go(idx + 1); };
+    var onKey = function (ev) {
+      if (ev.key !== 'ArrowLeft' && ev.key !== 'ArrowRight') return;
+      var sv = ev.currentTarget.querySelector('.pp-single');
+      var singleMode = !!(sv && sv.offsetParent !== null);
+      ev.preventDefault();
+      if (ev.key === 'ArrowRight') { if (singleMode) sgNext(); else spNext(); }
+      else { if (singleMode) sgPrev(); else spPrev(); }
+    };
+    var others = Object.keys(all).filter(function (k) { return k !== key; }).map(function (k) {
+      return { name: all[k].name, href: '?asset=' + k };
+    });
+
+    var curView = spreadView(curSp);
+    return {
+      a: a, archived: archived, review: review, interactive: !review,
+      sourceLabel: archived ? 'Showing the archived copy' + (window.__PASSPORT_SNAPSHOT_DATE ? ' of ' + window.__PASSPORT_SNAPSHOT_DATE : '') : 'Reading live from ' + (window.__PASSPORT_NETWORK_NAME || 'Polygon Amoy'),
+      sourceDot: archived ? '#8C6A4F' : '#2F6F4F',
+      others: others,
+      bookletLabel: 'Asset passport of ' + a.name + '. Use the arrow keys or the buttons below to turn pages.',
+      onKey: onKey,
+      reviewSpreads: spreads.map(spreadView),
+
+      cur: curView, spreadStatus: curView.status,
+      spreadPrev: spPrev, spreadNext: spNext,
+      spreadPrevOff: si === 0, spreadNextOff: si === spreads.length - 1,
+      spreadPrevOpacity: si === 0 ? '0.45' : '1', spreadNextOpacity: si === spreads.length - 1 ? '0.45' : '1',
+      spreadNextLabel: si === 0 ? 'Open passport' : 'Next',
+      spreadTabs: sectionTabs(curSp), spreadYears: yearTabs(curSp), spreadShowYears: inMaint(curSp),
+
+      single: side(pages[idx], 'single'), singleStatus: label(idx),
+      singlePrev: sgPrev, singleNext: sgNext,
+      singlePrevOff: idx === 0, singleNextOff: idx === N - 1,
+      singlePrevOpacity: idx === 0 ? '0.45' : '1', singleNextOpacity: idx === N - 1 ? '0.45' : '1',
+      singleNextLabel: idx === 0 ? 'Open' : 'Next',
+      singleTabs: sectionTabs([idx]), singleYears: yearTabs([idx]), singleShowYears: inMaint([idx])
+    };
+  }
+}
+
+window.__startPassport = function () {
+  var params = new URLSearchParams(location.search);
+  var initial = params.get('asset') || 'AP-0002';
+  var comp = new Component({ asset: initial, archived: window.__PASSPORT_ARCHIVED === true, review: false });
+  var app = document.getElementById('app');
+  var mq = window.matchMedia('(max-width: 960px)');
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  // ---------- one passport page ----------
+  function sun(size, stroke) {
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 112 112" fill="none" stroke="' + stroke + '" stroke-width="1.6" aria-hidden="true"><circle cx="56" cy="44" r="16"/><line x1="56" y1="14" x2="56" y2="22"/><line x1="56" y1="66" x2="56" y2="72"/><line x1="26" y1="44" x2="34" y2="44"/><line x1="78" y1="44" x2="86" y2="44"/><line x1="35" y1="23" x2="40" y2="28"/><line x1="72" y1="60" x2="77" y2="65"/><line x1="77" y1="23" x2="72" y2="28"/><line x1="40" y1="60" x2="35" y2="65"/><path d="M18 98 L34 78 H78 L94 98 Z"/><line x1="45" y1="78" x2="40" y2="98"/><line x1="56" y1="78" x2="56" y2="98"/><line x1="67" y1="78" x2="72" y2="98"/><line x1="26" y1="88" x2="86" y2="88"/></svg>';
+  }
+  function mrz(p) { return '<div class="mrz" aria-hidden="true"><div>' + esc(p.mrz1) + '</div><div>' + esc(p.mrz2) + '</div></div>'; }
+  function head(t, n) { return '<div class="ph"><div class="t">' + esc(t) + '</div><div class="n">' + esc(n) + '</div></div>'; }
+  function field(label, lines, cls) {
+    return '<div class="' + (cls || '') + '"><div class="lab">' + esc(label) + '</div>' + lines.filter(function (l) { return l !== ''; }).map(function (l) { return '<div class="val">' + esc(l) + '</div>'; }).join('') + '</div>';
+  }
+  function frame(p, cls, inner) {
+    return '<div class="paper ' + cls + '" style="border-radius:' + p.radius + ';box-shadow:' + p.shadow + '">' + inner + '</div>';
+  }
+  function renderPage(p) {
+    var h = '';
+    if (p.kind === 'cover') {
+      h = '<div class="cover"><div class="cty">' + esc(p.county) + '</div>' + sun(128, '#D9BE8C') +
+        '<div><div class="ttl">ASSET PASSPORT</div><div class="nm">' + esc(p.name) + '</div></div>' +
+        '<svg width="40" height="26" viewBox="0 0 40 26" fill="none" stroke="#D9BE8C" stroke-width="1.4" aria-hidden="true"><rect x="1" y="1" width="38" height="24" rx="2"/><rect x="8" y="7" width="8" height="12"/><line x1="16" y1="13" x2="24" y2="13"/><rect x="24" y="7" width="8" height="12"/></svg></div>';
+    } else if (p.kind === 'back') {
+      h = '<div class="backc"><div class="a">ASSET PASSPORT</div><div class="b">' + esc(p.assetNo) + '</div></div>';
+    } else if (p.kind === 'data') {
+      h = frame(p, 'guil',
+        head('DATA PAGE', p.numLabel) +
+        '<div class="dp-top"><div class="photo">' +
+          '<svg width="70" height="50" viewBox="0 0 84 60" fill="none" stroke="#4A5568" stroke-width="1.4" aria-hidden="true"><circle cx="66" cy="13" r="7"/><path d="M4 52 L16 34 H62 L76 52 Z"/><line x1="28" y1="34" x2="24" y2="52"/><line x1="40" y1="34" x2="40" y2="52"/><line x1="52" y1="34" x2="56" y2="52"/><line x1="10" y1="43" x2="70" y2="43"/></svg><span>[Site photo]</span></div>' +
+          '<div class="g2">' +
+            '<div><div class="lab">NAME</div><div class="val" style="font-weight:600">' + esc(p.name) + '</div></div>' +
+            '<div><div class="lab">ASSET NO.</div><div class="val" style="font-family:var(--mono);font-size:12px">' + esc(p.assetNo) + '</div></div>' +
+            field('SPV', [p.spv], 'span2') +
+            field('LEGAL ADDRESS', [p.addr1, p.addr2], 'span2') +
+            '<div class="span2"><div class="lab">TECHNOLOGY</div><div class="checks" role="img" aria-label="' + esc(p.techLabel) + '"><span><span class="box">' + esc(p.solarMark) + '</span>Solar</span><span><span class="box">' + esc(p.batteryMark) + '</span>Battery</span></div></div>' +
+          '</div></div>' +
+        '<div class="g3">' +
+          field('SITE', [p.place], 'span3') +
+          field('DEVELOPER', [p.dev1, p.dev2]) + field('EPC', [p.epc]) + field('GRID CONNECTION', [p.gridKv]) +
+          field('CAPACITY AC', [p.capacity]) + field('CAPACITY DC', [p.dc]) + field('DC/AC RATIO', [p.ratio]) +
+          field('ENERGIZATION', [p.energization]) + field('COD', [p.cod]) + '<div></div>' +
+          field('TYPOLOGY', [p.mt1, p.mt2], 'span2') + field('ORIENTATION', [p.or1, p.or2]) +
+        '</div>' +
+        '<div class="hold">' +
+          '<div><div class="lab">CURRENT HOLDER</div><a class="w" href="' + esc(p.holderHref) + '" aria-label="Current holder: the wallet that controls this record, not an ownership interest in the asset. View it on the explorer.">' + esc(p.holder) + '<span class="ext" aria-hidden="true">↗</span></a></div>' +
+          '<div><div class="lab">CONTROL LAST TRANSFERRED</div>' + (p.hasTransfer
+            ? '<a href="' + esc(p.transferHref) + '" style="font-size:13px" aria-label="Control last transferred ' + esc(p.lastTransfer) + '. View the transfer on the explorer.">' + esc(p.lastTransfer) + '<span class="ext" aria-hidden="true">↗</span></a>'
+            : '<div class="val" style="min-height:44px;display:flex;align-items:center;color:var(--ink-muted)">No transfer recorded</div>') + '</div>' +
+        '</div>' +
+        mrz(p));
+    } else if (p.kind === 'key') {
+      h = frame(p, '',
+        head('READING THE PASSPORT', p.numLabel) +
+        '<div style="display:flex;flex-direction:column;gap:14px">' + p.items.map(function (k) {
+          var sw = k.isBox ? '<span style="display:block;width:' + k.w + ';height:' + k.h + ';border:' + k.border + ';border-radius:' + k.radius + '"></span>'
+            : k.isNote ? '<span style="font-size:10px;line-height:1.2;color:var(--bronze);text-align:center">Nov<br>2024</span>'
+            : k.isLink ? '<span style="font-family:var(--sans);font-size:16px;font-weight:500;color:var(--bronze)">↗</span>' : '';
+          return '<div class="keyrow"><div class="sw" aria-hidden="true">' + sw + '</div><span class="kt">' + esc(k.text) + '</span></div>';
+        }).join('') + '</div>' + mrz(p));
+    } else {
+      var inner = head(p.title, p.numLabel);
+      if (p.hasSummary) inner += '<div class="summary">' + p.summary.map(function (s) { return '<div><span class="lab">' + esc(s.label) + '</span><b>' + esc(s.value) + '</b></div>'; }).join('') + '</div>';
+      (p.groups || []).forEach(function (g) {
+        inner += '<div><div class="gt">' + esc(g.title) + '</div>' + g.rows.map(function (r) {
+          return '<div class="row"><div class="top">' + (r.href ? '<a class="wl" href="' + esc(r.href) + '" aria-label="Wallet ' + esc(r.name) + ': view its transactions on the explorer">' + esc(r.name) + '<span class="ext" aria-hidden="true">↗</span></a>' : '<span>' + esc(r.name) + '</span>') + '<span class="v">' + esc(r.value || '') + '</span></div>' +
+            (r.hasSub ? '<span class="s">' + esc(r.sub) + '</span>' : '') + (r.hasSub2 ? '<span class="s">' + esc(r.sub2) + '</span>' : '') + '</div>';
+        }).join('') + '</div>';
+      });
+      if (p.hasStamps) inner += '<div class="stamps">' + p.stamps.map(function (s) {
+        return '<div class="stampcell"><a class="stamp" href="' + esc(s.href) + '" aria-label="' + esc(s.aria) + '" style="width:' + s.w + ';border:' + s.border + ';color:' + s.ink + ';transform:rotate(' + s.rot + ')">' +
+          '<span class="l">' + esc(s.label) + '</span><span class="d">' + esc(s.date) + '<span class="ext" aria-hidden="true">↗</span></span><span class="x">' + esc(s.text) + '</span><span class="b">' + esc(s.by) + '</span></a>' +
+          s.notes.map(function (n) { return '<span class="note" style="max-width:200px;text-align:center">' + esc(n.text) + '</span>'; }).join('') + '</div>';
+      }).join('') + '</div>';
+      if (p.hasNotice) inner += '<div class="notice">' + esc(p.notice) + '</div>';
+      if (p.hasLog) inner += '<div><div class="gt">' + esc(p.logTitle) + '</div>' + p.log.map(function (r) {
+        return '<a class="logrow" href="' + esc(r.href) + '" aria-label="' + esc(r.aria) + '"><div><div class="dt">' + esc(r.date) + '<span class="ext" aria-hidden="true">↗</span></div><div class="rc" style="color:' + r.recInk + '">' + esc(r.rec) + '</div></div>' +
+          '<div class="body"><span class="ty" style="color:' + r.ink + '">' + esc(r.type) + '</span>' +
+          (r.hasText ? '<span class="tx">' + esc(r.text) + '</span>' : '') +
+          (r.hasEquip ? '<span class="eq">' + esc(r.equip) + '</span>' : '') +
+          (r.hasBefore ? '<span class="bf">' + esc(r.before1) + '</span><span class="bf">' + esc(r.before2) + '</span>' : '') +
+          '<span class="by">' + esc(r.by) + '</span>' +
+          r.notes.map(function (n) { return '<span class="note">' + esc(n.text) + '</span>'; }).join('') + '</div></a>';
+      }).join('') + '</div>';
+      if (p.isEmpty) inner += '<div class="empty">' + esc(p.emptyText) + '</div>';
+      inner += mrz(p);
+      h = frame(p, p.bgImage && p.bgImage !== 'none' ? 'lined' : '', inner);
+    }
+    return '<div class="pg">' + h + '</div>';
+  }
+
+  // ---------- whole page ----------
+  // "Go to section": the sections in order, with Maintenance listed by year.
+  var jumpItems = [], jumpChoice = null;   // the visitor's last choice, kept while it is on screen
+  function jumpMenu(tabs, years) {
+    jumpItems = [];
+    var on = function (t) { return t.current === 'page'; };   // entries mark the current page with the text 'page'
+    var inYears = years.some(on);
+    tabs.forEach(function (t) {
+      if (t.label === 'Maintenance' && years.length) years.forEach(function (y) { jumpItems.push({ label: 'Maintenance ' + y.label, go: y.go, current: on(y) }); });
+      else jumpItems.push({ label: t.label, go: t.go, current: on(t) });
+    });
+    var chosen = jumpItems.findIndex(function (it) { return it.current && it.label === jumpChoice; });
+    var sel = chosen >= 0 ? chosen : Math.max(0, jumpItems.findIndex(function (it) { return it.current; }));   // else the first current (a spread can show two)
+    var opts = jumpItems.map(function (it, i) { return '<option value="' + i + '"' + (i === sel ? ' selected' : '') + '>' + esc(it.label) + '</option>'; }).join('');
+    return '<div class="jump"><label for="jump">Go to section</label><select id="jump">' + opts + '</select></div>';
+  }
+  function chips(list, cls) {
+    return list.map(function (t, i) { return '<button type="button" class="' + cls + '" data-i="' + i + '" aria-current="' + t.current + '">' + esc(t.label) + '</button>'; }).join('');
+  }
+  function render() {
+    var v = comp.renderVals();
+    var single = mq.matches;
+    var a = v.a;
+    var html = '';
+    html += '<div class="disclosure">Demonstration on the Polygon Amoy test network, which may be retired. The location is real; the farms, companies, people and events are fictional. Recorded dates in this demo are simulated; the explorer shows when each entry was actually written. A few details are illustrative and not recorded on the network; the key explains which.</div>';
+    if (v.archived) html += '<div class="archived">Showing the archived copy of the record' + (window.__PASSPORT_SNAPSHOT_DATE ? ', made on ' + esc(window.__PASSPORT_SNAPSHOT_DATE) : '') + '. The live network is unavailable right now.</div>';
+    html += '<div class="head"><div class="eyebrow">ASSET PASSPORT · ' + esc(a.assetNo) + ' · DEMO</div><h1>' + esc(a.name) + '</h1>' +
+      '<div class="meta"><span class="src"><span class="dot" style="background:' + v.sourceDot + '"></span><span>' + esc(v.sourceLabel) + '</span></span>' +
+      '<span>Other passports in this demo: ' + Object.keys(comp.assets()).filter(function (k) { return k !== a.assetNo; }).map(function (k) {
+        return '<button type="button" class="linkbtn" data-asset="' + k + '">' + esc(comp.assets()[k].name) + '</button>';
+      }).join(' ') + '</span></div></div>';
+
+    html += '<section class="booklet" tabindex="0" aria-label="' + esc(v.bookletLabel) + '">';
+    if (!single) {
+      var c = v.cur;
+      html += c.isSingle
+        ? '<div class="single-wrap pagefade">' + renderPage(c.page) + '</div>'
+        : '<div class="spread pagefade">' + renderPage(c.left) + renderPage(c.right) + '</div>';
+      html += '<div class="navrow"><button type="button" class="btn prev" data-nav="prev"' + (v.spreadPrevOff ? ' disabled' : '') + '>‹ Previous</button>' +
+        '<span class="status" aria-live="polite">' + esc(v.spreadStatus) + '</span>' +
+        '<button type="button" class="btn next" data-nav="next"' + (v.spreadNextOff ? ' disabled' : '') + '>' + esc(v.spreadNextLabel) + ' ›</button></div>';
+      html += jumpMenu(v.spreadTabs, v.spreadYears);
+    } else {
+      html += '<div class="single-wrap pagefade">' + renderPage(v.single) + '</div>';
+      html += '<div class="navrow" style="max-width:440px;justify-content:space-between"><button type="button" class="btn prev" data-nav="prev" aria-label="Previous page"' + (v.singlePrevOff ? ' disabled' : '') + '>‹</button>' +
+        '<span class="status" aria-live="polite">' + esc(v.singleStatus) + '</span>' +
+        '<button type="button" class="btn next" data-nav="next"' + (v.singleNextOff ? ' disabled' : '') + '>' + esc(v.singleNextLabel) + ' ›</button></div>';
+      html += jumpMenu(v.singleTabs, v.singleYears);
+    }
+    html += '</section>';
+
+    html += '<div class="cta"><a class="primary" href="mailto:support@ontoken.cloud?subject=Asset%20passport%20pilot&amp;body=Name%3A%0ARole%20(owner%2C%20asset%20manager%2C%20O%26M%20provider%2C%20other)%3A%0AAsset%20type%20and%20size%20(optional)%3A">I am interested in running a pilot with a real asset, no commitments</a>' +
+      '<p class="small">This opens an email to OnToken, LLC, which receives your details. See the <a href="https://ontoken.cloud">privacy policy on ontoken.cloud</a>.</p></div>';
+    html += '<div class="closing"><p>This is a demonstration, not a product or service offering. It runs on a test network that may be retired; a full copy of the record is kept in the <a href="https://github.com/omarzanotellius-art/asset-passport-contract" target="_blank" rel="noopener">public repository</a>.</p>' +
+      '<p>In real use, the owner would choose, entry by entry, which wording is public. Everything else would stay as a fingerprint, readable in full only by people the owner authorizes. Anything published on a blockchain is permanent and cannot be removed. This is planned and not shown in this demo.</p>' +
+      '<p>© 2026 OnToken, LLC.</p></div>';
+
+    var hadFocus = document.activeElement && document.activeElement.closest && document.activeElement.closest('.booklet');
+    var focusSel = hadFocus ? (document.activeElement.getAttribute('data-nav') ? '[data-nav="' + document.activeElement.getAttribute('data-nav') + '"]' : '.booklet') : null;
+    app.innerHTML = html;
+    document.title = a.name + ' · Asset passport';
+
+    // wire controls
+    var tabs = single ? v.singleTabs : v.spreadTabs, years = single ? v.singleYears : v.spreadYears;
+    var jump = app.querySelector('#jump');
+    if (jump) jump.onchange = function () { var it = jumpItems[+jump.value]; if (it) { jumpChoice = it.label; it.go(); } };
+    app.querySelectorAll('.year').forEach(function (b) { b.onclick = function () { years[+b.dataset.i].go(); }; });
+    app.querySelectorAll('[data-nav]').forEach(function (b) {
+      b.onclick = function () { (b.dataset.nav === 'prev' ? (single ? v.singlePrev : v.spreadPrev) : (single ? v.singleNext : v.spreadNext))(); };
+    });
+    app.querySelectorAll('[data-asset]').forEach(function (b) {
+      b.onclick = function () { comp.props.asset = b.dataset.asset; comp.state = { idx: 0 }; history.replaceState(null, '', '?asset=' + b.dataset.asset); render(); window.scrollTo(0, 0); };
+    });
+    app.querySelectorAll('a[href*="/tx/"], a[href*="/address/"]').forEach(function (l) { l.target = '_blank'; l.rel = 'noopener'; });
+    var bk = app.querySelector('.booklet');
+    bk.onkeydown = function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      if (e.key === 'ArrowRight') (single ? v.singleNext : v.spreadNext)(); else (single ? v.singlePrev : v.spreadPrev)();
+    };
+    if (focusSel) { var f = app.querySelector(focusSel); if (f && !f.disabled) f.focus({ preventScroll: true }); else bk.focus({ preventScroll: true }); }
+  }
+
+  comp.onChange = render;
+  mq.addEventListener('change', render);
+  // V2: sections in the address, e.g. ?asset=AP-0002#maintenance-2024
+  function slug(p) {
+    if (!p.section) return '';
+    var y = p.section === 'maintenance' && /(\d{4})/.exec(p.title || '');
+    return p.section + (y ? '-' + y[1] : '');
+  }
+  function goToHash() {
+    var h = decodeURIComponent((location.hash || '').replace('#', '')).toLowerCase();
+    if (!h) return;
+    var pages = comp.buildPages(comp.assets()[comp.props.asset]).pages;
+    var i = pages.findIndex(function (p) { return slug(p) === h; });
+    if (i >= 0) { comp.state = { idx: i }; render(); }
+  }
+  window.addEventListener('hashchange', goToHash);
+  render();
+  goToHash();
+};
+</script>
+<script type="module">
+import { createPublicClient, http, fallback } from "./lib/viem-2.56.8.js";
+import { loadPassports } from "./loader.mjs";
+const LIMIT_MS = 12000;                                      // V4
+const app = document.getElementById('app');
+app.innerHTML = '<p style="max-width:640px;margin:80px auto;text-align:center;font-family:var(--sans,sans-serif);color:#4A5568">Reading the passport from the network…</p>';
+const getJson = async (f) => { const r = await fetch('./data/' + f, { cache: 'no-cache' }); if (!r.ok) throw new Error(f + ' ' + r.status); return r.json(); };
+const cfg = await getJson('config.json');
+window.__PASSPORT_EXPLORER = cfg.explorer;
+window.__PASSPORT_NETWORK_NAME = cfg.networkName;
+let data = null;
+try {
+  const [abi, overlay, illustrative] = await Promise.all([getJson('abi.json'), getJson('overlay.json'), getJson('illustrative.json')]);
+  const chain = { id: cfg.chainId, name: cfg.networkName, nativeCurrency: { name: 'POL', symbol: 'POL', decimals: 18 }, rpcUrls: { default: { http: cfg.rpc } } };
+  const client = createPublicClient({ chain, transport: fallback(cfg.rpc.map((u) => http(u, { timeout: LIMIT_MS }))) });
+  data = await Promise.race([
+    loadPassports({ client, contract: cfg.contract, abi, fromBlock: BigInt(cfg.fromBlock), toBlock: BigInt(cfg.toBlock), overlay, illustrative, networkLabel: cfg.mrzNetwork }),
+    new Promise((_, no) => setTimeout(() => no(new Error('time limit')), LIMIT_MS)),
+  ]);
+} catch (err) {
+  console.warn('Live read failed, using the archived copy:', err && err.message);
+  try {
+    const snap = await getJson('snapshot.json');
+    data = snap.passports; window.__PASSPORT_ARCHIVED = true;
+    window.__PASSPORT_SNAPSHOT_DATE = new Date(snap.madeAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  } catch (e2) { data = null; }
+}
+if (!data) {
+  app.innerHTML = '<p style="max-width:640px;margin:80px auto;text-align:center;color:#4A5568">The passport could not be read from the network right now, and no archived copy is available. Please try again later.</p>';
+} else {
+  window.__PASSPORT_DATA = data;
+  window.__startPassport();
+}
+</script>
+</body>
+</html>
