@@ -1,0 +1,878 @@
+{
+  "note": "Archived copy of the passports, shown only if the live read fails or exceeds its time limit (D32). Made by viewer/loader.mjs.",
+  "madeAt": "2026-10-19T19:39:09.323Z",
+  "chainId": 80002,
+  "networkName": "Polygon Amoy",
+  "contract": "0x024f7b7064ff3f824105563c443fb6db5365bdf2",
+  "fromBlock": "50597288",
+  "toBlock": "50601139",
+  "passports": {
+    "AP-0001": {
+      "assetNo": "AP-0001",
+      "name": "Wildrye Solar",
+      "county": "Fresno County",
+      "state": "California",
+      "type": "Solar PV",
+      "tech": {
+        "solar": true,
+        "battery": false
+      },
+      "spv": "Wildrye Solar LLC",
+      "legalAddress": [
+        "100 Example Avenue, Suite 210",
+        "Fresno, CA 93700"
+      ],
+      "capacity": "10 MWac",
+      "acMw": 10,
+      "epc": "Kestrand Builders",
+      "place": "Fresno County, California",
+      "municipality": "Kerman",
+      "holder": "0x3304…A2b7",
+      "holderAddress": "0x3304404E980475544867386015266F84d964A2b7",
+      "holderName": "Larkmoor Capital",
+      "registeredTx": "0x5a4e932c00c4845bc1b0e7d35eaa3a9b520c5947c2623efe610d141c7f6e6053",
+      "commissioned": "Jul 2021",
+      "mounting": [
+        "Ground-mounted",
+        "Single-axis tracker"
+      ],
+      "orientation": [
+        "Azimuth 180°",
+        "Rotation ±60°"
+      ],
+      "dc": "13.08 MWp",
+      "dcMw": 13.08,
+      "gridKv": "21 kV (distribution)",
+      "energization": "Jun 2021",
+      "cod": "Jul 2021",
+      "developer": "Calvaro Renewables",
+      "mrz1": "AP<USA<FRESNO<<WILDRYE<SOLAR<<<<<<<<<<<<<<<<",
+      "mrz2": "AP0001<<<SOLAR<10MWAC<<2107<<AMOY<TESTNET<<<",
+      "vendors": [
+        {
+          "name": "Tarrow Field Services",
+          "value": "07/2021 – today",
+          "tx": "0xc4ff0e3df807bdc56a40ce8fd7c74229744fe74e244a30849492769a6ea85e25"
+        }
+      ],
+      "assetManagers": [
+        {
+          "name": "Tavren Asset Management",
+          "value": "07/2021 – today",
+          "tx": "0x173359ff6a84f6236644804626c543cb1ec6b0dad19bc564609f5d2add0228e5"
+        }
+      ],
+      "production": {
+        "2021": 12900,
+        "2022": 26200,
+        "2023": 25000,
+        "2024": 26100,
+        "2025": 25800,
+        "2026": 21500
+      },
+      "insurance": [
+        {
+          "type": "Property damage (all risk)",
+          "insurer": "Granmoor Insurance",
+          "period": "07/2026 – 07/2027",
+          "tx": "0xbc8426d95f94fddca88bc0676730f307a7cbca133a44ae3371952c99f442bb85"
+        },
+        {
+          "type": "Business interruption",
+          "insurer": "Granmoor Insurance",
+          "period": "07/2026 – 07/2027",
+          "tx": "0x573a2716a40bbe42b97a5f0267c7bf6f903b7a72049d15c530ce7057d30c386d"
+        },
+        {
+          "type": "General liability",
+          "insurer": "Granmoor Insurance",
+          "period": "07/2026 – 07/2027",
+          "tx": "0xe40410931bc1ce25c73c2aa003b0cb9f3fae52f85b1729531be11b1a7c71a4cc"
+        }
+      ],
+      "wallets": {
+        "holders": [
+          {
+            "w": "0x3304…A2b7",
+            "address": "0x3304404E980475544867386015266F84d964A2b7",
+            "period": "07/2021 – today",
+            "tx": "0x5a4e932c00c4845bc1b0e7d35eaa3a9b520c5947c2623efe610d141c7f6e6053"
+          }
+        ],
+        "writers": [
+          {
+            "w": "0x3304…A2b7",
+            "address": "0x3304404E980475544867386015266F84d964A2b7",
+            "period": "07/2021 – today",
+            "role": "Holder · Larkmoor Capital"
+          },
+          {
+            "w": "0x458c…C2bC",
+            "address": "0x458c8A863278d574F12e3ebb8738b58bFc78C2bC",
+            "period": "07/2021 – today",
+            "role": "O&M provider · Tarrow Field Services"
+          },
+          {
+            "w": "0x6EFA…907a",
+            "address": "0x6EFAe8EF125DA09D5041f51fdFD0B68A98B8907a",
+            "period": "07/2021 – today",
+            "role": "Asset manager · Tavren Asset Management"
+          }
+        ]
+      },
+      "components": [
+        {
+          "name": "Inverters",
+          "total": "10.2 MWac",
+          "units": [
+            {
+              "name": "Inverter 1 (central)",
+              "manufacturer": "Brindle Inverter Systems",
+              "model": "CI-3400",
+              "qty": 1,
+              "rating": "3,400 kWac",
+              "installed": "",
+              "warrantyTo": "07/2031",
+              "extendedFrom": "07/2026",
+              "performanceTo": "",
+              "tx": "0x3d56a9934efd71e118c706800d6e8d77af768cc470f66d9dbb97670336c603ae"
+            },
+            {
+              "name": "Inverter 2 (central)",
+              "manufacturer": "Brindle Inverter Systems",
+              "model": "CI-3400",
+              "qty": 1,
+              "rating": "3,400 kWac",
+              "installed": "",
+              "warrantyTo": "07/2031",
+              "extendedFrom": "07/2026",
+              "performanceTo": "",
+              "tx": "0x36eeb7b633b842cf6aa89e34a48e1bc9109b2ac279c6ef06f0aed3950d5f22a6"
+            },
+            {
+              "name": "Inverter 3 (central)",
+              "manufacturer": "Brindle Inverter Systems",
+              "model": "CI-3400",
+              "qty": 1,
+              "rating": "3,400 kWac",
+              "installed": "",
+              "warrantyTo": "07/2031",
+              "extendedFrom": "07/2026",
+              "performanceTo": "",
+              "tx": "0xd75b6c4d9dc725bb45cb5b1e4f843534cda0208b0f494c384cad6d0c63e8a713"
+            }
+          ]
+        },
+        {
+          "name": "Modules",
+          "total": "13.08 MWp",
+          "units": [
+            {
+              "name": "PV modules (bifacial)",
+              "manufacturer": "Tolven Solar Modules",
+              "model": "M-545",
+              "qty": 24000,
+              "rating": "545 W each",
+              "installed": "",
+              "warrantyTo": "07/2033",
+              "extendedFrom": "",
+              "performanceTo": "07/2046",
+              "tx": "0xc701832fe04f1c3216a080ae17e8fd0f5096beca757cf7d8945468c2c0cd36cd"
+            }
+          ]
+        },
+        {
+          "name": "Transformers",
+          "total": "10.5 MVA",
+          "units": [
+            {
+              "name": "Transformer 1 (with Inverter 1), 0.6/21 kV",
+              "manufacturer": "Harnell Transformer Co.",
+              "model": "T-3.5",
+              "qty": 1,
+              "rating": "3.5 MVA",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0xedeab2fe3f2d5499fc9c0f7dda2ff9f5a32d035d2af0b82ff04154430ba65386"
+            },
+            {
+              "name": "Transformer 2 (with Inverter 2), 0.6/21 kV",
+              "manufacturer": "Harnell Transformer Co.",
+              "model": "T-3.5",
+              "qty": 1,
+              "rating": "3.5 MVA",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0xa009f7f0a3f264ab9c7aaa7870b4e335db29cb6a3e6ebd6101267d7728068ff3"
+            },
+            {
+              "name": "Transformer 3 (with Inverter 3), 0.6/21 kV",
+              "manufacturer": "Harnell Transformer Co.",
+              "model": "T-3.5",
+              "qty": 1,
+              "rating": "3.5 MVA",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0x4065bb09a93e4085774644a1b94c60cbaa9504639ec4bd4f7df94279e6c3d08c"
+            }
+          ]
+        },
+        {
+          "name": "Trackers",
+          "total": "267 rows",
+          "units": [
+            {
+              "name": "Tracker structure",
+              "manufacturer": "Pivara Tracking Systems",
+              "model": "ST-1",
+              "qty": 267,
+              "rating": "",
+              "installed": "",
+              "warrantyTo": "07/2031",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0x1e33cc4d204975e5d18d7a83aa51fa83ca4cdd9e0391def93d65f61c8786f7f9"
+            },
+            {
+              "name": "Drives and controllers",
+              "manufacturer": "Pivara Tracking Systems",
+              "model": "ST-1 Drive",
+              "qty": 267,
+              "rating": "",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0xb7f897fdf40a93be9d3de30856720ffba39ac80c13f2dab6c7b02bf7577e9537",
+              "part": true
+            }
+          ]
+        },
+        {
+          "name": "Battery storage",
+          "total": "—",
+          "units": [],
+          "noneText": "No battery storage installed"
+        }
+      ],
+      "entries": [
+        {
+          "kind": "commission",
+          "event": "2021-07",
+          "recorded": "2021-07",
+          "text": "10 MWac · original · EPC: Kestrand Builders",
+          "by": "Larkmoor Capital",
+          "status": "",
+          "equip": "",
+          "note": "Historical: from commissioning documents",
+          "comp": "",
+          "system": "",
+          "tx": "0x945178c1cc7b5219172bf5290ba50ff4c16d147ab68c61ecdb7f6007c287c6ec"
+        },
+        {
+          "kind": "sched",
+          "event": "2022-03",
+          "recorded": "2022-03",
+          "text": "Annual visit",
+          "by": "Tarrow Field Services",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0x4fa7c3402ccad9e6199aa69543968db307233737d56d021c745e46cf44d24ee0"
+        },
+        {
+          "kind": "sched",
+          "event": "2023-03",
+          "recorded": "2023-03",
+          "text": "Annual visit",
+          "by": "Tarrow Field Services",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0xf5aeba7a278e5e127744e4ce43ca0c8277f1965ae7cf0bfcc838bda8a8f6f090"
+        },
+        {
+          "kind": "unsched",
+          "event": "2023-06",
+          "recorded": "2023-06",
+          "text": "Tracker motor replaced",
+          "by": "Tarrow Field Services",
+          "status": "confirmed",
+          "equip": "TRACKERS",
+          "note": "",
+          "comp": "",
+          "system": "Trackers",
+          "tx": "0x2328cbda8574b11a80e4c36cb1db98936f5d23630a5ca8c2acf4f83de5d36b5b"
+        },
+        {
+          "kind": "sched",
+          "event": "2024-03",
+          "recorded": "2024-03",
+          "text": "Annual visit",
+          "by": "Tarrow Field Services",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0x43dcc20361600f141380e8606e1b3e96461048a0a63deefe11adc04b307c10a8"
+        },
+        {
+          "kind": "contract",
+          "event": "2024-07",
+          "recorded": "2024-07",
+          "text": "O&M contract renewed, same provider",
+          "by": "Larkmoor Capital",
+          "status": "",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0xcb43c54c9a13e47b19b19dffaba4d90c922226f4871a96b43dc11749242fd2ae"
+        },
+        {
+          "kind": "sched",
+          "event": "2025-03",
+          "recorded": "2025-03",
+          "text": "Annual visit",
+          "by": "Tarrow Field Services",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0x0c384375cf18ff65327abdd166a5d6433855d6148eef88f5b12f648cde3f1ce4"
+        },
+        {
+          "kind": "sched",
+          "event": "2026-03",
+          "recorded": "2026-03",
+          "text": "Annual visit",
+          "by": "Tarrow Field Services",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0x9573d6483ec97876dd3a86bd51dbd10b23105c4871a33e2c15be1823c9d1fefa"
+        }
+      ],
+      "asOfYear": 2026,
+      "asOfMonth": 10
+    },
+    "AP-0002": {
+      "assetNo": "AP-0002",
+      "name": "Verrow Solar",
+      "county": "Fresno County",
+      "state": "California",
+      "type": "Solar PV",
+      "tech": {
+        "solar": true,
+        "battery": false
+      },
+      "spv": "Verrow Solar LLC",
+      "legalAddress": [
+        "100 Example Avenue, Suite 340",
+        "Fresno, CA 93700"
+      ],
+      "capacity": "10 MWac",
+      "acMw": 10,
+      "epc": "Norvale Constructors",
+      "place": "Fresno County, California",
+      "municipality": "Kingsburg",
+      "holder": "0x3F6d…1408",
+      "holderAddress": "0x3F6d5771A513C8f96aca7Ad30bADbC9D083C1408",
+      "holderName": "Ostrell Capital",
+      "registeredTx": "0x3978533d3d0c6a6e39b052b49872c1eec720fef63ed311ee1140833df35d043a",
+      "commissioned": "Jul 2021",
+      "mounting": [
+        "Ground-mounted",
+        "Single-axis tracker"
+      ],
+      "orientation": [
+        "Azimuth 180°",
+        "Rotation ±60°"
+      ],
+      "dc": "13.08 MWp",
+      "dcMw": 13.08,
+      "gridKv": "21 kV (distribution)",
+      "energization": "Jun 2021",
+      "cod": "Jul 2021",
+      "developer": "Calvaro Renewables",
+      "mrz1": "AP<USA<FRESNO<<VERROW<SOLAR<<<<<<<<<<<<<<<<<",
+      "mrz2": "AP0002<<<SOLAR<10MWAC<<2107<<AMOY<TESTNET<<<",
+      "vendors": [
+        {
+          "name": "Brennick O&M",
+          "value": "07/2021 – 06/2024",
+          "tx": "0x8ac4133e7a96d44b402d59f58d4b060019d36b7b0be85dec8b063594e2019926"
+        },
+        {
+          "name": "Dalbeck Solar Services",
+          "value": "06/2024 – today",
+          "tx": "0x05b39701df743cea10173d7bc7f9dbc0b07ece4e1a9bc690c744edea214d553d"
+        }
+      ],
+      "assetManagers": [
+        {
+          "name": "Pellam Asset Services",
+          "value": "07/2021 – 02/2025",
+          "tx": "0xe58b33ad27a80b6fa6c1c0a1ea05471e6025f7f21b19397e99a789207808b87c"
+        },
+        {
+          "name": "Quenby Energy Management",
+          "value": "02/2025 – today",
+          "tx": "0x76ddecf8f50da3a49e95473ac67e38166c329b15e494cd58e8490d6c08acd884"
+        }
+      ],
+      "production": {
+        "2021": 12900,
+        "2022": 24100,
+        "2023": 22500,
+        "2024": 25800,
+        "2025": 25500,
+        "2026": 21400
+      },
+      "insurance": [
+        {
+          "type": "Property damage (all risk)",
+          "insurer": "Ashcomb Insurance",
+          "period": "03/2026 – 03/2027",
+          "tx": "0x0875d615e7541cb36dce031d1d16d6da59addc55358777fb3698df40f56910fe"
+        },
+        {
+          "type": "Business interruption",
+          "insurer": "Ashcomb Insurance",
+          "period": "03/2026 – 03/2027",
+          "tx": "0x32e6665f3bca7de2d656ce45d0c70455eac796c9161618d8a44050b27bc176c9"
+        },
+        {
+          "type": "General liability",
+          "insurer": "Ashcomb Insurance",
+          "period": "03/2026 – 03/2027",
+          "tx": "0x21d379e3cd64b9af785d4f1766beae9ef7d8b9ac5a9cefc266c8f62a92b94d0e"
+        }
+      ],
+      "wallets": {
+        "holders": [
+          {
+            "w": "0x16Ef…e8D5",
+            "address": "0x16Ef78b47B957D0737D3aB4EB977F178e9c0e8D5",
+            "period": "07/2021 – 02/2025",
+            "tx": "0x3978533d3d0c6a6e39b052b49872c1eec720fef63ed311ee1140833df35d043a"
+          },
+          {
+            "w": "0x3F6d…1408",
+            "address": "0x3F6d5771A513C8f96aca7Ad30bADbC9D083C1408",
+            "period": "02/2025 – today",
+            "tx": "0x9dd120d2926fb9ac0d1e23a1049f031de0a62de0c072720045a86a21e20880b1"
+          }
+        ],
+        "writers": [
+          {
+            "w": "0x16Ef…e8D5",
+            "address": "0x16Ef78b47B957D0737D3aB4EB977F178e9c0e8D5",
+            "period": "07/2021 – 02/2025",
+            "role": "Holder · Halvern Capital"
+          },
+          {
+            "w": "0x3F6d…1408",
+            "address": "0x3F6d5771A513C8f96aca7Ad30bADbC9D083C1408",
+            "period": "02/2025 – today",
+            "role": "Holder · Ostrell Capital"
+          },
+          {
+            "w": "0x8c3C…8CE4",
+            "address": "0x8c3C25E224147Fe547B37222d8E0f25839858CE4",
+            "period": "07/2021 – 06/2024",
+            "role": "O&M provider · Brennick O&M"
+          },
+          {
+            "w": "0x0DE7…d362",
+            "address": "0x0DE756684AA36B38F1D9c0970E9f1f4c615Bd362",
+            "period": "06/2024 – today",
+            "role": "O&M provider · Dalbeck Solar Services"
+          },
+          {
+            "w": "0x5184…6D3c",
+            "address": "0x51846A4C826b054e7aCf49aDeD8c84E3Ed9c6D3c",
+            "period": "07/2021 – 02/2025",
+            "role": "Asset manager · Pellam Asset Services"
+          },
+          {
+            "w": "0x8788…428f",
+            "address": "0x8788518e283f9246370f5206A5A9acE629F5428f",
+            "period": "02/2025 – today",
+            "role": "Asset manager · Quenby Energy Management"
+          }
+        ]
+      },
+      "components": [
+        {
+          "name": "Inverters",
+          "total": "10.2 MWac",
+          "units": [
+            {
+              "name": "Inverter 1 (central)",
+              "manufacturer": "Brindle Inverter Systems",
+              "model": "CI-3400",
+              "qty": 1,
+              "rating": "3,400 kWac",
+              "installed": "",
+              "warrantyTo": "07/2031",
+              "extendedFrom": "07/2026",
+              "performanceTo": "",
+              "tx": "0xdfb62519abdd43097485d8e1eadff3c05541d33c674791d4a2c259610e83868b"
+            },
+            {
+              "name": "Inverter 2 (central)",
+              "manufacturer": "Brindle Inverter Systems",
+              "model": "CI-3400",
+              "qty": 1,
+              "rating": "3,400 kWac",
+              "installed": "09/2023",
+              "warrantyTo": "09/2033",
+              "extendedFrom": "09/2028",
+              "performanceTo": "",
+              "tx": "0xd0354466d3d2c3a04dc887b48264e957cdbb22d6a31931d9281775a0af8ed01b"
+            },
+            {
+              "name": "Inverter 3 (central)",
+              "manufacturer": "Brindle Inverter Systems",
+              "model": "CI-3400",
+              "qty": 1,
+              "rating": "3,400 kWac",
+              "installed": "",
+              "warrantyTo": "07/2031",
+              "extendedFrom": "07/2026",
+              "performanceTo": "",
+              "tx": "0x60bb30fba60d7a3a2162b282a91fb84ede0802554557044cccc262d4982134bf"
+            }
+          ]
+        },
+        {
+          "name": "Modules",
+          "total": "13.08 MWp",
+          "units": [
+            {
+              "name": "PV modules (bifacial)",
+              "manufacturer": "Tolven Solar Modules",
+              "model": "M-545",
+              "qty": 24000,
+              "rating": "545 W each",
+              "installed": "",
+              "warrantyTo": "07/2033",
+              "extendedFrom": "",
+              "performanceTo": "07/2046",
+              "tx": "0x2bd495dfabdc0fd8f539e541d04d2b1b540f535e1589e0c7089aa0f50e97dd5c"
+            }
+          ]
+        },
+        {
+          "name": "Transformers",
+          "total": "10.5 MVA",
+          "units": [
+            {
+              "name": "Transformer 1 (with Inverter 1), 0.6/21 kV",
+              "manufacturer": "Harnell Transformer Co.",
+              "model": "T-3.5",
+              "qty": 1,
+              "rating": "3.5 MVA",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0x46e68e1a5d3591b4b469f15f7153dc3d04027ecac03118b0ccd267711f56e7d0"
+            },
+            {
+              "name": "Transformer 2 (with Inverter 2), 0.6/21 kV",
+              "manufacturer": "Harnell Transformer Co.",
+              "model": "T-3.5",
+              "qty": 1,
+              "rating": "3.5 MVA",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0x4cb4549c614e13f119f241bb0937be46fc9eebb563275d191576385e77c57b6d"
+            },
+            {
+              "name": "Transformer 3 (with Inverter 3), 0.6/21 kV",
+              "manufacturer": "Harnell Transformer Co.",
+              "model": "T-3.5",
+              "qty": 1,
+              "rating": "3.5 MVA",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0x5d057335a46ef1f01af100936852845b9fae5be7f092f9c1d2d1d101f9cbad1a"
+            }
+          ]
+        },
+        {
+          "name": "Trackers",
+          "total": "267 rows",
+          "units": [
+            {
+              "name": "Tracker structure",
+              "manufacturer": "Pivara Tracking Systems",
+              "model": "ST-1",
+              "qty": 267,
+              "rating": "",
+              "installed": "",
+              "warrantyTo": "07/2031",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0xfb5a089bb6aaebbf522af3bdfff9d6e5813018a08cc1226a87d5c36b95ba08f1"
+            },
+            {
+              "name": "Drives and controllers",
+              "manufacturer": "Pivara Tracking Systems",
+              "model": "ST-1 Drive",
+              "qty": 267,
+              "rating": "",
+              "installed": "",
+              "warrantyTo": "07/2026",
+              "extendedFrom": "",
+              "performanceTo": "",
+              "tx": "0x8446bf983865a1292c8480dffbd5e712ae7ff688eb53de8be5138c9cda46fc80",
+              "part": true
+            }
+          ]
+        },
+        {
+          "name": "Battery storage",
+          "total": "—",
+          "units": [],
+          "noneText": "No battery storage installed"
+        }
+      ],
+      "entries": [
+        {
+          "kind": "commission",
+          "event": "2021-07",
+          "recorded": "2021-07",
+          "text": "10 MWac · original · EPC: Norvale Constructors",
+          "by": "Halvern Capital",
+          "status": "",
+          "equip": "",
+          "note": "Historical: from commissioning documents",
+          "comp": "",
+          "system": "",
+          "tx": "0xf58491d7792ffb3ffee5e34954cea4c0ab31d3f6149bef0ab28f2e182b680850"
+        },
+        {
+          "kind": "sched",
+          "event": "2022-03",
+          "recorded": "2022-03",
+          "text": "Annual visit",
+          "by": "Brennick O&M",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0xf6dc872214d9edb21ecdba5b6763accf72638aef16156b02cf877faa122022b6"
+        },
+        {
+          "kind": "unsched",
+          "event": "2022-04",
+          "recorded": "2022-04",
+          "text": "Control board replaced after a trip",
+          "by": "Brennick O&M",
+          "status": "confirmed",
+          "equip": "INVERTER 2",
+          "note": "",
+          "comp": "",
+          "system": "Inverters",
+          "tx": "0xaf9ad98e9956af92bc711e3b64e153c94b9aee16029799d4fcfbe5dbafed16c4"
+        },
+        {
+          "kind": "unsched",
+          "event": "2022-08",
+          "recorded": "2024-11",
+          "text": "Corrective work, second call-out",
+          "by": "Halvern Capital",
+          "status": "",
+          "equip": "INVERTER 2",
+          "note": "",
+          "comp": "",
+          "system": "Inverters",
+          "tx": "0x351923685ef18cda2fd33e6f0f2e837d6d1afe25d4354d23bff62d65003a5389"
+        },
+        {
+          "kind": "claim",
+          "event": "2022-09",
+          "recorded": "2022-09",
+          "text": "Warranty claim opened",
+          "by": "Halvern Capital",
+          "status": "",
+          "equip": "INVERTER 2",
+          "note": "",
+          "comp": "",
+          "system": "Inverters",
+          "tx": "0x2b10af8620e8392ab352a12b344fdeb356ef4fe29d9ee8ec4c346a53942f137b"
+        },
+        {
+          "kind": "unsched",
+          "event": "2022-10",
+          "recorded": "2022-10",
+          "text": "Temporary repair",
+          "by": "Brennick O&M",
+          "status": "confirmed",
+          "equip": "CABLE SECTION C",
+          "note": "",
+          "comp": "",
+          "system": "Cabling",
+          "tx": "0x03343efd67ecb1e92e11682d057dafaf4ae9d1ed6b6258429c80218c33cfa147"
+        },
+        {
+          "kind": "sched",
+          "event": "2023-03",
+          "recorded": "2023-03",
+          "text": "Annual visit",
+          "by": "Brennick O&M",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0xd8f8cbdd21e90858c982997b855d5f98abce375747b81263bc69baeae408d381"
+        },
+        {
+          "kind": "unsched",
+          "event": "2023-06",
+          "recorded": "2023-06",
+          "text": "Insulation repaired",
+          "by": "Brennick O&M",
+          "status": "confirmed",
+          "equip": "CABLE SECTION C",
+          "note": "",
+          "comp": "",
+          "system": "Cabling",
+          "tx": "0x9b6b67c912d49c565c4b2c0576c1c861205ba23e62882f5a31392a8e5c424775"
+        },
+        {
+          "kind": "replace",
+          "event": "2023-09",
+          "recorded": "2023-09",
+          "text": "",
+          "by": "Brennick O&M",
+          "status": "confirmed",
+          "equip": "INVERTER 2",
+          "note": "",
+          "comp": "Inverters",
+          "system": "Inverters",
+          "tx": "0x74910d2bcee253a67e14385caee21ef8f1a2cdfaf71f2dc02331477ad2a0f3c7",
+          "before": [
+            "Brindle Inverter Systems CI-3400",
+            "In service 07/2021 – 09/2023"
+          ]
+        },
+        {
+          "kind": "dispute",
+          "event": "2024-03",
+          "recorded": "2024-03",
+          "text": "Dispute opened over the Sep 2022 claim",
+          "by": "Halvern Capital",
+          "status": "",
+          "equip": "INVERTER 2",
+          "note": "No resolution recorded",
+          "comp": "",
+          "system": "Inverters",
+          "tx": "0x8593d504c004d128586c8b9284d6ebc7b8bf8d805ea41115806d3efafc7a2e37"
+        },
+        {
+          "kind": "pending",
+          "event": "2024-05",
+          "recorded": "2024-05",
+          "text": "",
+          "by": "Brennick O&M",
+          "status": "not confirmed",
+          "equip": "CABLE SECTION C",
+          "note": "",
+          "comp": "",
+          "system": "Cabling",
+          "tx": "0x6f20c4cb7a3093325fec8bb2389015a82daed15ca8d9eaf8904b5c7554c85bd9",
+          "category": "CORRECTIVE – CABLING"
+        },
+        {
+          "kind": "provider",
+          "event": "2024-06",
+          "recorded": "2024-06",
+          "text": "Brennick O&M replaced by Dalbeck Solar Services",
+          "by": "Recorded automatically",
+          "status": "",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "tx": "0x05b39701df743cea10173d7bc7f9dbc0b07ece4e1a9bc690c744edea214d553d"
+        },
+        {
+          "kind": "transfer",
+          "event": "2025-02",
+          "recorded": "2025-02",
+          "text": "Halvern Capital to Ostrell Capital",
+          "by": "Recorded automatically",
+          "status": "",
+          "equip": "",
+          "note": "Every earlier entry stays in the passport",
+          "comp": "",
+          "tx": "0x9dd120d2926fb9ac0d1e23a1049f031de0a62de0c072720045a86a21e20880b1"
+        },
+        {
+          "kind": "sched",
+          "event": "2025-03",
+          "recorded": "2025-03",
+          "text": "Annual visit",
+          "by": "Dalbeck Solar Services",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0xf7dd0556d95f31d09e8263b71d0b37fc7a350f3401e658aa2a4791d9c5f48168"
+        },
+        {
+          "kind": "unsched",
+          "event": "2025-08",
+          "recorded": "2025-08",
+          "text": "Insulation work",
+          "by": "Dalbeck Solar Services",
+          "status": "confirmed",
+          "equip": "CABLE SECTION C",
+          "note": "",
+          "comp": "",
+          "system": "Cabling",
+          "tx": "0x3dbafe229d0c884b1940e860aeb63fe1258af5fed2e5834f9bf2c3f4d5b42109"
+        },
+        {
+          "kind": "sched",
+          "event": "2026-03",
+          "recorded": "2026-03",
+          "text": "Annual visit",
+          "by": "Dalbeck Solar Services",
+          "status": "confirmed",
+          "equip": "",
+          "note": "",
+          "comp": "",
+          "system": "",
+          "tx": "0xca87d52732b53e098ec8632b86accf5c71d559aa2480704cb840d9f6cb5dd3c1"
+        }
+      ],
+      "asOfYear": 2026,
+      "asOfMonth": 10
+    }
+  }
+}

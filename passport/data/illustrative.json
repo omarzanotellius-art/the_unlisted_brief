@@ -1,0 +1,38 @@
+{
+  "format": "asset-passport illustrative data v1",
+  "note": "Illustrative only: NOT recorded on the network and NOT anchored on-chain (D40). Shown without explorer links.",
+  "AP-0001": {
+    "cod": "2021-07",
+    "developer": "Calvaro Renewables",
+    "gridConnection": "21 kV (distribution)",
+    "dcCapacity": "13.08 MWp",
+    "dcAcRatio": "1.31",
+    "energization": "2021-06",
+    "typology": [
+      "Ground-mounted",
+      "Single-axis tracker"
+    ],
+    "orientation": [
+      "Azimuth 180°",
+      "Rotation ±60°"
+    ],
+    "modulePerformanceWarranty": "2046-07"
+  },
+  "AP-0002": {
+    "cod": "2021-07",
+    "developer": "Calvaro Renewables",
+    "gridConnection": "21 kV (distribution)",
+    "dcCapacity": "13.08 MWp",
+    "dcAcRatio": "1.31",
+    "energization": "2021-06",
+    "typology": [
+      "Ground-mounted",
+      "Single-axis tracker"
+    ],
+    "orientation": [
+      "Azimuth 180°",
+      "Rotation ±60°"
+    ],
+    "modulePerformanceWarranty": "2046-07"
+  }
+}
