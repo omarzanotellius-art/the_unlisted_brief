@@ -17,6 +17,16 @@ const MON3 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 const ym = (unix) => { const d = new Date(Number(unix) * 1000); return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`; };
 const mmyyyy = (s) => `${s.slice(5, 7)}/${s.slice(0, 4)}`;          // "2021-07" -> "07/2021"
 const monYear = (s) => `${MON3[Number(s.slice(5, 7)) - 1]} ${s.slice(0, 4)}`; // "2021-07" -> "Jul 2021"
+/** Runs fn over items with at most `limit` calls in flight; results keep the items' order. */
+async function mapLimit(items, limit, fn) {
+  const out = new Array(items.length);
+  let next = 0;
+  const worker = async () => { while (next < items.length) { const i = next++; out[i] = await fn(items[i], i); } };
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return out;
+}
+const IN_FLIGHT = 10;   // V4: parallel, but capped so a public node isn't flooded
+const range = (n) => Array.from({ length: Number(n) }, (_, i) => BigInt(i + 1));
 const short = (a) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 const num = (s) => parseFloat(String(s).replace(/,/g, "")); // leading number, e.g. "3,400 kWac" -> 3400
 const fmt = (x) => Number(x.toFixed(2)).toString();
@@ -52,26 +62,25 @@ export async function loadPassports(o) {
     return out.sort((a, b) => (a.blockNumber === b.blockNumber ? a.logIndex - b.logIndex : Number(a.blockNumber - b.blockNumber)));
   }
   const ev = {};
-  for (const n of ["AssetRegistered", "ControlTransferred", "RoleAccepted", "RoleRevoked", "EntrySubmitted", "UnitAdded", "UnitReplaced", "WarrantyExtended"]) ev[n] = await events(n);
+  const NAMES = ["AssetRegistered", "ControlTransferred", "RoleAccepted", "RoleRevoked", "EntrySubmitted", "UnitAdded", "UnitReplaced", "WarrantyExtended"];
+  const [lists, count] = await Promise.all([Promise.all(NAMES.map((n) => events(n))), read("assetCount")]);
+  NAMES.forEach((n, i) => { ev[n] = lists[i]; });
   const forAsset = (n, id) => ev[n].filter((l) => l.args.assetId === id);
 
   let asOf = "0000-00";
   const passports = {};
-  const count = await read("assetCount");
   for (let id = 1n; id <= count; id++) {
     const assetNo = `AP-${String(id).padStart(4, "0")}`;
-    const [identity, holderNow] = await read("getAsset", [id]);
+    const [[identity, holderNow], n, uc] = await Promise.all([read("getAsset", [id]), read("entryCount", [id]), read("unitCount", [id])]);
     const ill = o.illustrative?.[assetNo] ?? {};
 
     // ---- entries (with the transaction that submitted each, for dates and explorer links)
-    const n = await read("entryCount", [id]);
     const submitted = new Map(forAsset("EntrySubmitted", id).map((l) => [l.args.entryId, l]));
-    const entries = [];
-    for (let i = 1n; i <= n; i++) {
+    const entries = await mapLimit(range(n), IN_FLIGHT, async (i) => {
       const e = await read("getEntry", [id, i]);
       const log = submitted.get(i);
-      entries.push({ id: i, e, tx: log.transactionHash, recorded: await when(log) });
-    }
+      return { id: i, e, tx: log.transactionHash, recorded: await when(log) };
+    });
     for (const x of entries) if (x.recorded > asOf) asOf = x.recorded;
 
     // L3: names holders recorded for themselves (latest per wallet)
@@ -85,14 +94,11 @@ export async function loadPassports(o) {
     const byOf = (e) => (e.writer === 0 ? holderName(e.author) : e.authorCompany);
 
     // ---- equipment (L7)
-    const units = [];
-    const uc = await read("unitCount", [id]);
     const added = new Map(forAsset("UnitAdded", id).map((l) => [l.args.unitId, l]));
-    for (let u = 1n; u <= uc; u++) {
-      const [unit, endNow] = await read("getUnit", [id, u]);
-      const ext = await read("warrantyExtensions", [id, u]);
-      units.push({ id: u, unit, endNow, ext, tx: added.get(u)?.transactionHash });
-    }
+    const units = await mapLimit(range(uc), IN_FLIGHT / 2, async (u) => {   // two reads per unit
+      const [[unit, endNow], ext] = await Promise.all([read("getUnit", [id, u]), read("warrantyExtensions", [id, u])]);
+      return { id: u, unit, endNow, ext, tx: added.get(u)?.transactionHash };
+    });
     const commissioned = ym(units.reduce((m, x) => (x.unit.spec.inService < m ? x.unit.spec.inService : m), units[0]?.unit.spec.inService ?? 0n));
     const unitSystem = (ref) => {
       if (!ref) return "";
