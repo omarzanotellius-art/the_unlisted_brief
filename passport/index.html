@@ -652,7 +652,7 @@ window.__startPassport = function () {
     var single = mq.matches;
     var a = v.a;
     var html = '';
-    html += '<div class="disclosure">Demonstration on the Polygon Amoy test network, which may be retired. The location is real; the farms, companies, people and events are fictional. Recorded dates in this demo are simulated; the explorer shows when each entry was actually written. A few details are illustrative and not recorded on the network; the key explains which.</div>';
+    html += '<div class="disclosure">Demonstration on Polygon Amoy, a public test network where nothing has monetary value. The location is real; the farms, companies, people and events are fictional. Recorded dates are simulated: five years of history were recorded in one day, and the explorer shows when each entry was actually written. A few details are illustrative and not recorded on the network; the key explains which.</div>';
     if (v.archived) html += '<div class="archived">Showing the archived copy of the record' + (window.__PASSPORT_SNAPSHOT_DATE ? ', made on ' + esc(window.__PASSPORT_SNAPSHOT_DATE) : '') + '. The live network is unavailable right now.</div>';
     html += '<div class="head"><div class="eyebrow">ASSET PASSPORT · ' + esc(a.assetNo) + ' · DEMO</div><h1>' + esc(a.name) + '</h1>' +
       '<div class="meta"><span class="src"><span class="dot" style="background:' + v.sourceDot + '"></span><span>' + esc(v.sourceLabel) + '</span></span>' +
@@ -681,8 +681,8 @@ window.__startPassport = function () {
 
     html += '<div class="cta"><a class="primary" href="mailto:support@ontoken.cloud?subject=Asset%20passport%20pilot&amp;body=Name%3A%0ARole%20(owner%2C%20asset%20manager%2C%20O%26M%20provider%2C%20other)%3A%0AAsset%20type%20and%20size%20(optional)%3A">I am interested in running a pilot with a real asset, no commitments</a>' +
       '<p class="small">This opens an email to OnToken, LLC, which receives your details. See the <a href="https://ontoken.cloud">privacy policy on ontoken.cloud</a>.</p></div>';
-    html += '<div class="closing"><p>This is a demonstration, not a product or service offering. It runs on a test network that may be retired; a full copy of the record is kept in the <a href="https://github.com/omarzanotellius-art/asset-passport-contract" target="_blank" rel="noopener">public repository</a>.</p>' +
-      '<p>In real use, the owner would choose, entry by entry, which wording is public. Everything else would stay as a fingerprint, readable in full only by people the owner authorizes. Anything published on a blockchain is permanent and cannot be removed. This is planned and not shown in this demo.</p>' +
+    html += '<div class="closing"><p>This is a learning project and demonstration. It is not a product, service, offering, investment or security token, and it has not been audited. It runs on a public test network where nothing has monetary value; that network may be retired, so a full copy of the record is kept in the <a href="https://github.com/omarzanotellius-art/asset-passport-contract" target="_blank" rel="noopener">public repository</a>.</p>' +
+      '<p>In this demo, everything is public, because the data is fictional. In real use, the owner would choose, entry by entry, which wording is public; everything else would stay as a fingerprint, readable in full only by people the owner authorizes. Anything published on a blockchain is permanent and cannot be removed.</p>' +
       '<p>© 2026 OnToken, LLC.</p></div>';
 
     var hadFocus = document.activeElement && document.activeElement.closest && document.activeElement.closest('.booklet');
