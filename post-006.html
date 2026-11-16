@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic asset revaluation for tokenized power plants — The Unlisted Brief</title>
+<meta name="description" content="Dynamic asset revaluation for tokenized power plants: the data mostly exists, but who confirms the facts and stands behind the value? A founder’s view.">
+<link rel="alternate" type="application/atom+xml" title="The Unlisted Brief" href="/feed.xml">
+<link rel="canonical" href="https://theunlistedbrief.com/post-006.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Unlisted Brief">
+<meta property="og:title" content="Dynamic asset revaluation: whose word should the market take?">
+<meta property="og:description" content="Dynamic asset revaluation for tokenized power plants: the data mostly exists, but who confirms the facts and stands behind the value? A founder’s view.">
+<meta property="og:url" content="https://theunlistedbrief.com/post-006.html">
+<meta property="og:image" content="https://theunlistedbrief.com/images/post-006-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="Black and white photo of a power plant control room with electrical diagrams on the monitors, with The Unlisted Brief wordmark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;300;400;500&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F1E38;
+    --terracotta:#B07A4E;
+    --bronze:#8C6A4F;
+    --terracotta-tint:#F4ECE6;
+    --slate:#4A5568;
+    --cream:#F5F2EE;
+    --line: rgba(15,30,56,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',sans-serif;}
+
+  /* ============ TOP BAR ============ */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    max-width:760px;
+    margin:32px auto 0;
+    padding:0 20px;
+  }
+  .topbar .wordmark-link{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:500;
+    font-size:15px;
+    color:var(--navy);
+    text-decoration:none;
+    letter-spacing:-0.005em;
+  }
+  .topbar .back-link{
+    font-size:12px;
+    letter-spacing:0.02em;
+    color:var(--slate);
+    text-decoration:none;
+  }
+  .topbar .back-link:hover{
+    color:var(--terracotta);
+  }
+
+  /* ============ ARTICLE ============ */
+  .article-wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:48px 20px 80px;
+  }
+
+  .article-meta{
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--slate);
+    margin-bottom:16px;
+  }
+  .article-meta .sep{
+    margin:0 8px;
+    color:var(--line);
+  }
+
+  h1.article-title{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:300;
+    font-size:34px;
+    line-height:1.16;
+    letter-spacing:-0.02em;
+    margin:0 0 44px;
+  }
+
+  .article-subtitle{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:300;
+    font-size:18px;
+    line-height:1.45;
+    color:var(--slate);
+    margin:-28px 0 44px;
+  }
+
+  .article-body h2{
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:400;
+    font-size:21px;
+    line-height:1.4;
+    letter-spacing:-0.005em;
+    margin:52px 0 18px;
+  }
+  .article-body h2:first-child{
+    margin-top:0;
+  }
+  .article-body p{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--slate);
+    margin:0 0 20px;
+    text-align:justify;
+    -webkit-hyphens:auto;
+    hyphens:auto;
+  }
+  .article-image{
+    width:38%;
+    aspect-ratio:3/5;
+    border-radius:10px;
+    object-fit:cover;
+    display:block;
+  }
+  .article-image.float-left{
+    float:left;
+    margin:4px 24px 16px 0;
+  }
+  .article-image.float-right{
+    float:right;
+    margin:4px 0 16px 24px;
+  }
+
+  /* ============ FOUNDER LINE ============ */
+  .founder-line{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:64px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+    clear:both;
+  }
+  .founder-avatar{
+    flex:0 0 auto;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+  }
+  .founder-line-text{
+    font-size:12.5px;
+    line-height:1.5;
+    color:var(--slate);
+  }
+  .founder-line-text a{
+    color:var(--terracotta);
+    text-decoration:none;
+    margin-left:8px;
+    white-space:nowrap;
+  }
+  .founder-line-text a:hover{
+    color:var(--bronze);
+  }
+
+  /* ============ SITE FOOTER ============ */
+  .site-footer{
+    text-align:center;
+    padding:28px 24px 40px;
+    font-family:'Epilogue',Georgia,serif;
+    font-weight:400;
+    font-size:12px;
+    letter-spacing:0.02em;
+    color:var(--slate);
+  }
+
+  @media (max-width:600px){
+    h1.article-title{ font-size:27px; }
+    .article-subtitle{ font-size:16px; }
+    .article-body h2{ font-size:18px; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Omar Zanotelli",
+  "url": "https://theunlistedbrief.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/omar-z-9b4b276b/",
+    "https://www.instagram.com/omarzanotelli/"
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a class="wordmark-link" href="/">The Unlisted Brief</a>
+  <a class="back-link" href="/">← All articles</a>
+</div>
+
+<div class="article-wrap">
+
+  <div class="article-meta">NOV 17, 2026<span class="sep">·</span>7 MIN READ</div>
+
+  <h1 class="article-title">Whose word should the market take?</h1>
+
+  <p class="article-subtitle">The data on a power plant mostly exists. What a tokenized plant lacks is someone who stands behind its value.</p>
+
+  <div class="article-body">
+    <p>In <a href="post-005.html" style="color:var(--terracotta);text-decoration:none;">my last post on tokenized real estate</a>, I ended on a simple idea: information about a plant would need someone to stand behind it. That idea sits at the heart of dynamic asset revaluation for tokenized power plants: a value that moves when the plant does. This post looks at what that would take. The short answer: a plant’s value can only move with its facts if those facts reach holders, someone accountable stands behind the judgment, and someone is obliged to share both on time. A single tokenized plant rarely has all three. If you negotiate your own information rights, you probably have most of this already. Most token holders don’t.</p>
+    <h2>Why is a plant’s value hard to pin down?</h2>
+    <p>There’s no single way to value a tokenized power plant, which makes valuation a point of tension among the different players. Whether you determine the asset’s value through a cost, income or market approach, each step involves judgment, and in my experience, reasonable people land on different numbers. That matters because every transaction relies on a valuation, whether it’s stated or simply assumed. As I see it, tokenized assets need a valuation that stays current, and the number travels into reporting and portfolios. A valuation only keeps up with the facts that reach it.</p>
+    <h2>Who sees a plant’s facts, and when?</h2>
+    <p>The challenge begins with information itself. Accounting standards like US GAAP and IFRS provide common ground, and their numbers are trusted. But they don’t all measure the same thing: the plant itself is usually carried at what it cost, less depreciation and amortization, while fair value (ASC 820, IFRS 13) is what the asset would sell for in a normal sale today. Either way, the numbers are periodic: a major event can trigger an impairment review, but the result appears only in the next financial statements.</p>
+    <img class="article-image float-right" src="images/post-006-image-1.png" alt="A monitor showing a single-line electrical diagram of a power plant, with desk phones in the foreground">
+    <p>The token’s value also depends on the capital structure around the plant: projects are typically owned through an SPV, with lenders and often tax equity investors holding claims that rank ahead of, or alongside, the token holder’s, so a refinancing, for example, can change the token’s economics without any change in the plant itself.</p>
+    <p>Market data runs on a different clock. Prices are public and fast: in Texas, ERCOT publishes prices for specific locations on the grid, normally every five minutes, and similar data is available across other US power markets. These prices are published through public data connections (APIs) that software can read.</p>
+    <p>Performance data is different. The plant’s monitoring system (SCADA) shows its output in real time, and if the plant sells into a competitive wholesale market, the grid operator also keeps an official record of what it produced, which the owner can access through a secure portal. The public sees only totals by region and fuel, and the EIA’s plant-level statistics arrive about two months later. Fair enough for an owner. For a token, and the infrastructure around it, what’s needed is a single source of truth for the plant’s facts that everyone holding a stake can see and trust.</p>
+    <p>Compare what three kinds of investors receive:</p>
+    <div style="overflow-x:auto;margin:0 0 8px;">
+      <table style="width:100%;min-width:560px;border-collapse:collapse;font-size:13.5px;line-height:1.55;color:var(--slate);">
+        <thead><tr><th style="text-align:left;font-family:'Epilogue',Georgia,serif;font-weight:400;color:var(--navy);padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:bottom;"></th><th style="text-align:left;font-family:'Epilogue',Georgia,serif;font-weight:400;color:var(--navy);padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:bottom;">Stock investor</th><th style="text-align:left;font-family:'Epilogue',Georgia,serif;font-weight:400;color:var(--navy);padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:bottom;">Project-finance lender</th><th style="text-align:left;font-family:'Epilogue',Georgia,serif;font-weight:400;color:var(--navy);padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:bottom;background:var(--terracotta-tint);">Token holder*</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;"><strong style="color:var(--navy);font-weight:500;">Price</strong></td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Live, on an exchange</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Not needed; the loan has fixed terms</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;background:var(--terracotta-tint);">Only if the token trades, often thinly</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;"><strong style="color:var(--navy);font-weight:500;">Regular reports</strong></td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Quarterly and annual filings (10-Q, 10-K)</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Regular operating reports</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;background:var(--terracotta-tint);">Periodic, if the offering provides them</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;"><strong style="color:var(--navy);font-weight:500;">Notice of major events</strong></td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Generally within four business days (Form 8-K)</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Typically required under reporting covenants</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;background:var(--terracotta-tint);">Depends on the offering’s terms</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;"><strong style="color:var(--navy);font-weight:500;">Independent check</strong></td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Annual audit</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;">Independent engineer reports, covenant tests</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;background:var(--terracotta-tint);">Rarely, between transactions</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12.5px;line-height:1.6;margin:0 0 20px;"><em>*Without the information rights an institutional investor negotiates.</em></p>
+    <p>A token can record who owns a plant. It can’t, on its own, keep the plant’s value honest.</p>
+    <h2>Borrowed trust, earned trust</h2>
+    <p>The owner already has most of the facts, and has the least reason to publish bad ones quickly. What I think the market seeks is not just more information, but a source of judgment it can trust. When a value affects lending decisions, investor reporting, or secondary-market transactions, and reasonable valuers can disagree, a buyer or a lender wants to know who is prepared to defend that assessment if challenged and who bears responsibility if it proves wrong. That is the role independent engineers, auditors, and valuers have historically played. Their value isn’t in producing data; it’s in standing behind a conclusion. Project-finance lenders to the same plant typically already get this: regular operating reports, covenant tests and an independent engineer’s sign-off.</p>
+    <p>Tokenized funds already show part of this. Apollo’s tokenized private-credit fund is priced daily, and that value is made available on-chain, where other systems can read it. No rating agency certifies the number. It’s accepted because of what surrounds it: a fund administrator, auditors, a documented valuation process, and a manager with a reputation and legal exposure if it gets the number wrong. The judgment isn’t new. What’s new is that it arrives every day, in a form software can use.</p>
+    <p>A single power plant, tokenized on its own, isn’t there yet. Renewable projects may already sit inside large tokenized funds, but RWA.xyz, one of the main trackers of tokenized assets, doesn’t even give infrastructure a category of its own. Many renewable assets are also small, scattered across sponsors few investors have heard of. Their value can’t borrow trust from a name; it would have to earn it from facts others can check, at a cost a small plant can carry.</p>
+    <p>Where single physical assets are tokenized, the value tends to stand still: as I noted in <a href="post-005.html" style="color:var(--terracotta);text-decoration:none;">my last post</a>, many real estate tokens still show the value they had on the day they were issued. A plant’s conclusions usually arrive in a periodic report, long after the facts have changed. For a tokenized plant to earn that trust, the judgment behind its value has to be shared on time, on the same digital rails as its data, not in a PDF that arrives when it suits the owner.</p>
+    <h2>Dynamic asset revaluation, piece by piece</h2>
+    <p>The way I read it, three pieces are missing. The first is a shared record of the plant’s facts that everyone holding a stake can see. The second is someone accountable for the judgment built on those facts. The third is an obligation to share both on time, which digital rails make far easier to meet. For a token that trades, the first piece may matter most: the market can price facts it can see.</p>
+    <p>Without them, events reach a token late. Among the events I’ve witnessed on solar farms, two show the difference: one temporary, one that changed the asset itself. In one, a transformer fire took the plant offline for two months; insurance covered part of the loss, and the plant still lost value. In another, a hailstorm forced modules to be replaced ahead of schedule; insurance paid, but the deductible and the early spending still cut into value. Output data shows events like these the same day, while the assessments, insurance claims and books take longer. If holders could see an attested, delayed version of that data, the market would already know something had happened, even before anyone could say what it means for value. Visible data changes the owner’s incentive: the larger the drop, the harder it is to stay silent. How long should the token’s value have to wait to reflect it?</p>
+    <h2>What a moving value can’t fix</h2>
+    <p>If a token can be redeemed at its published value, its price stays close to it. If it only trades, the market sets the price, and the published value is one reference among others. Either way, a valuation is an opinion, even when software produces it. Even the facts can be disputed, such as whether an outage counts against availability or a curtailment is paid for. And a number that changes every day isn’t better informed than a quarterly one if the view behind it hasn’t changed.</p>
+    <p>Once a value feeds decisions that move money, the incentive to influence it grows. In a thin market, news without an assessment can do harm of its own: some holders may sell before anyone knows how much the value has changed. Most new information is noise. The challenge is neither to update value continuously nor to leave it unchanged too long. It’s knowing when new information matters enough to justify a fresh look. That’s where judgment comes in, and where shared standards, and a trustworthy party behind them, paid in a way that doesn’t depend on the answer, become valuable.</p>
+    <p>When a plant’s value changes, whose word should the market take?</p>
+
+    <h2>Sources</h2>
+    <p style="font-size:13px;line-height:1.6;">Figures checked on Nov 12, 2026; grid and market data are published continuously and may have been revised since.</p>
+    <ul style="font-size:13px;line-height:1.75;color:var(--slate);margin:0 0 20px;padding-left:20px;">
+      <li>SEIA, <a href="https://seia.org/research-resources/valuation-solar-generation-assets/" style="color:var(--terracotta);text-decoration:none;">Valuation of Solar Generation Assets</a>; undated; valuation as a point of tension.</li>
+      <li>ERCOT, <a href="https://www.ercot.com/mktinfo/rtm/index" style="color:var(--terracotta);text-decoration:none;">Real-Time Market</a>; locational prices normally every five minutes.</li>
+      <li>ERCOT, <a href="https://developer.ercot.com/applications/pubapi/relnotes/" style="color:var(--terracotta);text-decoration:none;">Public API release notes</a>; prices published through a public API.</li>
+      <li>US Energy Information Administration, <a href="https://eia.gov/electricity/data/eia923/" style="color:var(--terracotta);text-decoration:none;">Form EIA-923</a>; plant-level generation, monthly, about two months after the month it covers.</li>
+      <li>US Energy Information Administration, <a href="https://www.eia.gov/todayinenergy/detail.php?id=43295" style="color:var(--terracotta);text-decoration:none;">Hourly Electric Grid Monitor</a>; hourly data by region and fuel, not by plant.</li>
+      <li>Investor.gov, <a href="https://www.investor.gov/introduction-investing/investing-basics/glossary/form-8-k" style="color:var(--terracotta);text-decoration:none;">Form 8-K</a>; listed companies report major events, generally within four business days.</li>
+      <li>Securitize, <a href="https://www.prnewswire.com/news-releases/apollo-and-securitize-announce-partnership-and-launch-tokenized-access-to-credit-fund-on-aptos-avalanche-ethereum-ink-polygon-and-solana-networks-302364212.html" style="color:var(--terracotta);text-decoration:none;">Apollo and Securitize Announce Partnership and Launch Tokenized Access to Credit Fund</a>; PR Newswire, January 30, 2025; daily value and fund administrator.</li>
+      <li>Norton Rose Fulbright, <a href="https://www.projectfinance.law/publications/2020/february/lending-to-hedged-wind-and-solar-projects?hs_amp=true" style="color:var(--terracotta);text-decoration:none;">Lending to Hedged Wind and Solar Projects</a>; February 2020; lenders’ coverage-ratio tests.</li>
+      <li>US Department of Energy, Loan Programs Office, <a href="https://www.energy.gov/node/1193021" style="color:var(--terracotta);text-decoration:none;">Portfolio Management</a>; lender monitoring and independent engineers.</li>
+      <li>Norton Rose Fulbright, <a href="https://www.projectfinance.law/publications/2021/december/solar-tax-equity-structures" style="color:var(--terracotta);text-decoration:none;">Solar Tax Equity Structures</a>; December 2021; where tax equity ranks.</li>
+      <li>RWA.xyz, <a href="https://app.rwa.xyz/blog/introducing-our-new-asset-classification-framework" style="color:var(--terracotta);text-decoration:none;">Asset classification framework</a>; March 2026; no infrastructure category.</li>
+    </ul>
+    <p style="font-size:13px;line-height:1.6;"><em>This post is commentary, not investment advice.</em></p>
+  </div>
+
+  <div class="founder-line">
+    <img class="founder-avatar" src="images/founder-avatar.png" alt="Omar Zanotelli">
+    <div class="founder-line-text">
+      Renewable energy by background, tokenization by curiosity, a few other things by accident.
+      <a href="https://www.linkedin.com/in/omar-z-9b4b276b/" target="_blank" rel="noopener">LinkedIn →</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">The Unlisted Brief</div>
+
+</body>
+</html>
